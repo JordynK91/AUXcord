@@ -1,16 +1,4 @@
-<h1>User Profile</h1>
-
-
-<% if @user != nil%>
-	<div>Username: <%= @user.username %></div>
-	<div>Name: <%= @user.name %></div>
-	<div>Bio: <%= @user.bio %></div>
-	<div>Email: <%= @user.email %></div>
-	<div>Location: <%= @user.location %></div>
-    
-    <%# if login_in? %>
-        <%#if current_user.id == @user.id %>
-            <div><h1>Change your info</h1></div>
+  <div><h1>Make An Account</h1></div>
 	        <%= form_for @user do |f| %>
 	          <div>Username:</div>
 	          <div><%= f.text_field :username %></div>
@@ -28,13 +16,3 @@
 	          <div><%= f.text_field :faves %></div>
 	          <%= f.submit "Save"%>
 	          <% end %>
-        <% #end %>
-	<% #end %>
- <%= link_to'Sign Out', logout_path, method: :destroy %>
-
-
-<% else %>
-      <h2>this user doen't exist anymore!</h2>
-<%end%>	
-
-

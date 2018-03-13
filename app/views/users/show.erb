@@ -8,7 +8,7 @@
 	<div>Location: <%= @user.location %></div>
     
     <%# if login_in? %>
-        <%#if current_user.id == @user.id %>
+        <%if current_user.id == @user.id %>
             <div><h1>Change your info</h1></div>
 	        <%= form_for @user do |f| %>
 	          <div>Username:</div>
@@ -27,7 +27,7 @@
 	          <div><%= f.text_field :faves %></div>
 	          <%= f.submit "Save"%>
 	          <% end %>
-        <% #end %>
+        <% end %>
 	<% #end %>
 
 

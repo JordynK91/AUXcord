@@ -23,4 +23,5 @@ class UsersController < ApplicationController
     	params.require(:user).permit(:username, :password, :location, :name, :email, :faves, :bio,
 :achievements)
     end 
+
 end

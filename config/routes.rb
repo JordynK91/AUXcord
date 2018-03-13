@@ -3,8 +3,6 @@ Rails.application.routes.draw do
   get '/search', to: 'searches#index'
 
 
-
-
 resources :users
 
 
@@ -16,7 +14,6 @@ root to: 'home#index'
   get '/new', to: 'sessions#new'
   
   post '/logout', to: 'sessions#destroy'
-
 
 
 end

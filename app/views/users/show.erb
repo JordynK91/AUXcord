@@ -1,7 +1,38 @@
 <h1>User Profile</h1>
-<div>Username: <%= @user.username %></div>
-<div>name: <%= @user.name %></div>
-<div>bio<%= @user.bio %></div>
-<div>Email: <%= @user.email %></div>
-<div>Location: <%= @user.location %></div>
+
+<% if @user != nil%>
+	<div>Username: <%= @user.username %></div>
+	<div>Name: <%= @user.name %></div>
+	<div>Bio: <%= @user.bio %></div>
+	<div>Email: <%= @user.email %></div>
+	<div>Location: <%= @user.location %></div>
+    
+    <%# if login_in? %>
+        <%#if current_user.id == @user.id %>
+            <div><h1>Change your info</h1></div>
+	        <%= form_for @user do |f| %>
+	          <div>Username:</div>
+	          <div><%= f.text_field :username %></div>
+	          <div>Email:</div>
+	          <div><%= f.text_field :email %></div>
+	          <div>Password:</div>
+	          <div><%= f.text_field :password %></div>
+	          <div>Bio:</div>
+	          <div><%= f.text_area :bio %></div>
+	          <div>Location:</div>
+	          <div><%= f.text_field :location %></div>
+	          <div>Name:</div>
+	          <div><%= f.text_field :name %></div>
+	          <div>favorites:</div>
+	          <div><%= f.text_field :faves %></div>
+	          <%= f.submit "Save"%>
+	          <% end %>
+        <% #end %>
+	<% #end %>
+
+
+<% else %>
+      <h2>this user doen't exist anymore!</h2>
+<%end%>	
+
 

@@ -8,8 +8,8 @@
 	<div>Email: <%= @user.email %></div>
 	<div>Location: <%= @user.location %></div>
     
-    <%# if login_in? %>
-        <%#if current_user.id == @user.id %>
+    <% if login_in? %>
+        <% if current_user.id == @user.id %>
             <div><h1>Change your info</h1></div>
 	        <%= form_for @user do |f| %>
 	          <div>Username:</div>
@@ -27,9 +27,14 @@
 	          <div>favorites:</div>
 	          <div><%= f.text_field :faves %></div>
 	          <%= f.submit "Save"%>
-	          <% end %>
-        <% #end %>
-	<% #end %>
+
+	        <% end %>
+        <% end %>
+    <% else %>
+    <h1>please login</h1>    
+	<% end %>
+
+
  <%= link_to'Sign Out', logout_path, method: :destroy %>
 
 

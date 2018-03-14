@@ -9,6 +9,18 @@
   </head>
 
   <body>
+    <nav>      
+      <ul>
+          <% if login_in? %>
+            <li>Howdy! <%= current_user.username%></li>
+            <li><a href="/search">Search</a></li>
+            <li><a href="/users/<%=current_user.id%>">Profile</a></li>
+            <li><%= link_to'Sign Out', logout_path, method: :destroy %></li>
+          <% else %>
+            <% link_to root_path %>
+          <% end %>              
+      </ul>
+    </nav>
   	<% if flash[:message] %>
       <%= flash[:message] %>
     <% end%>

@@ -27,24 +27,43 @@
 	          <div>favorites:</div>
 	          <div><%= f.text_field :faves %></div>
 	          <%= f.submit "Save"%>
-<<<<<<< HEAD
-	          <% end %>
-        <% #end %>
-	<% #end %>
+
+          <% end %>
+ 
  <%= link_to'Sign Out', logout_path, method: :destroy %>
  <div><%= link_to('Delete Your Account', user_path, method: :delete)%></div>
 
+<div class="tabs">
+<ul class="tab-links">
+<li class="active"><a href="#tab1">Tab #1</a></li>
+<li><a href="#tab2">Tab #2</a></li>
+<li><a href="#tab3">Tab #3</a></li>
+</ul>
+<div class="tab-content">
+<div id="tab1" class="tab active">
+<p>These are my upcoming events</p>
+</div>
+<div id="tab2" class="tab">
+<p>These is my wishlist</p>
+</div>
+<div id="tab3" class="tab">
+<p>This is the history</p>
+</div>
+</div>
+</div>
 
 
 
-=======
 
-	        <% end %>
-        <% end %>
+
+
+<% end %>
+
+
+        
     <% else %>
     <h1>please login</h1>    
 	<% end %>
->>>>>>> ecac504bbe6ade584d64ce6e27fa911f91565e48
 <% else %>
       <h2>this user doen't exist anymore!</h2>
 <%end%>	

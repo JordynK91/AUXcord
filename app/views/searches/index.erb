@@ -4,17 +4,16 @@
   <% end %>
 
 
- <br />
+<%if @results[:page][:totalElements] != 0 %>
+  <p> We got <%= @results[:_embedded][:events].length %> results for you</p>
+  <% @results[:_embedded][:events].each do |event| %>   
+    <div><h3><%= event[:name] %></h3></div>
+    <div><a href='/events/<%= event[:id] %>'><img src="<%= event[:images][2][:url] %>" width='305px'></a></div>
+    <p><%= event[:dates][:start][:localDate]%> <%= event[:dates][:start][:localTime]%></p>
+    <p>Venue: <%= event[:_embedded][:venues][0][:name]%></p>
+  <% end %>
+  <% else %>
+    <h1>Opps, we can't find anything for you</h1>
 
- <% @results[:_embedded][:events].each do |event| %>
-    <div><img src="<%=event[:images][1][:url]%>" width='305px'></div>
-
-    <div><p><%= event[:name] %></p></div>
-    <p><%= event[:dates][:start][:localDate]%></p>
-    <p>info: <%= event[:info] %></p>
-    <p>Venue</p>
-    <p><%= event[:_embedded][:venues][0][:name]%></p>
-    <p><a href='https://maps.google.com/?q=<%= event[:_embedded][:venues][0][:location][:latitude]%>,<%= event[:_embedded][:venues][0][:location][:longitude]%>' target='blank'> map</a></p>
-    <!-- <div class="event__box"><%= event %></div> -->
-    <% end %>
+<% end %>  
 

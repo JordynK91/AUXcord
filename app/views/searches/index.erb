@@ -3,8 +3,6 @@
    <%= submit_tag "Search" %>
   <% end %>
 
-<br/>
-
 
 <%if @results[:page][:totalElements] != 0 %>
   <p> We got <%= @results[:_embedded][:events].length %> results for you</p>

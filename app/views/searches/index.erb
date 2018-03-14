@@ -1,1 +1,7 @@
-<%= @results %>
+<p> length of events: <%= @results[:_embedded][:events].length %></p>
+ <br />
+
+ <% @results[:_embedded][:events].each do |event| %>
+    <p><%= event[:name] %></p>
+    <div class="event__box"><%= event %></div>
+    <% end %>

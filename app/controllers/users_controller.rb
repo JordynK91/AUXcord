@@ -10,7 +10,7 @@ class UsersController < ApplicationController
 	       flash[:message] = 'updated successfully'
            redirect_to "/users/#{user.id}"	
 		else
-		   flash[:message] = 'you are not the user'
+		   flash[:message] = 'you are not this person'
 		    redirect_to "/users/#{user.id}"		
         end
     end    

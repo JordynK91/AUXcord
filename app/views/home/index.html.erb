@@ -1,0 +1,17 @@
+<h1> Welcome to Concert Tracker </h1>
+
+<% if flash[:alert] %>
+         <%= flash[:alert] %> 
+<% end %>
+
+
+<h2> Log In: </h2>
+<div class = 'login'>
+		<%= form_tag(login_path) do  %>
+		Username: <%= text_field_tag :username%>
+		Password: <%= text_field_tag :password %>
+		<%= submit_tag 'Login' %>
+		<% end %>
+	</div>
+
+  <a href="/users/new/">Make an Account</a>

@@ -1,3 +1,35 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.nav-tabs {
+	background-color: black;
+}
+
+.nav-tabs li active {
+	color: red;
+
+}
+.tab-content {
+	text-align: center;
+}
+
+.userInfo{
+	text-align:center;
+}
+
+.headertop{
+width: 100%;
+height: 400px;
+font-size: 150px;
+text-align: center;
+background-color: blue;
+
+}
+
+.subheader{
+	font-size: 100px;
+}
+
+.delete {color: red;
+		font-size: 20px;}

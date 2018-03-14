@@ -5,6 +5,10 @@ class SearchesController < ApplicationController
         @results = JSON.parse response, symbolize_names: true
     end
 
+
+    def show
+    end	
+
     def search 
         redirect_to "/search/#{params[:keyword]}"
     end

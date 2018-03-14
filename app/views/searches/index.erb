@@ -7,7 +7,14 @@
  <br />
 
  <% @results[:_embedded][:events].each do |event| %>
-    <p><%= event[:name] %></p>
-    <div class="event__box"><%= event %></div>
+    <div><img src="<%=event[:images][1][:url]%>" width='305px'></div>
+
+    <div><p><%= event[:name] %></p></div>
+    <p><%= event[:dates][:start][:localDate]%></p>
+    <p>info: <%= event[:info] %></p>
+    <p>Venue</p>
+    <p><%= event[:_embedded][:venues][0][:name]%></p>
+    <p><a href='https://maps.google.com/?q=<%= event[:_embedded][:venues][0][:location][:latitude]%>,<%= event[:_embedded][:venues][0][:location][:longitude]%>' target='blank'> map</a></p>
+    <!-- <div class="event__box"><%= event %></div> -->
     <% end %>
 

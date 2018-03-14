@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   get '/search', to: 'searches#index'
   post '/search', to: 'searches#search'
   get '/search/:id', to: 'searches#index'
-
+  get '/events/:id', to: 'searches#show'
 
 resources :users
 
@@ -11,11 +11,11 @@ resources :users
 root to: 'home#index'
 
 
- post '/login', to: 'sessions#create'
+post '/login', to: 'sessions#create'
 
-  get '/new', to: 'sessions#new'
+get '/new', to: 'sessions#new'
   
-  post '/logout', to: 'sessions#destroy'
+post '/logout', to: 'sessions#destroy'
 
 
 end

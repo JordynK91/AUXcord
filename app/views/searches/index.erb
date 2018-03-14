@@ -1,3 +1,7 @@
+<%= form_tag search_path do %>
+    <%= text_field_tag :keyword %>
+   <%= submit_tag "Search" %>
+  <% end %>
 
 <p> length of events: <%= @results[:_embedded][:events].length %></p>
  <br />

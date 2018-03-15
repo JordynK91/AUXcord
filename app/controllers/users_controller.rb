@@ -33,10 +33,7 @@ class UsersController < ApplicationController
     if @user.destroy
     redirect_to '/users/new'
   end
-end
-
-
-
+end	
 
 	private
     def user_params

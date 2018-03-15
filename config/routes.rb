@@ -19,5 +19,6 @@ get '/new', to: 'sessions#new'
   
 post '/logout', to: 'sessions#destroy'
 
+  get '/login', to: 'home#login'
 
 end

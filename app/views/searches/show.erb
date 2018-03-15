@@ -8,7 +8,6 @@
 <p><%= @result[:_embedded][:venues][0][:address][:line1]%>, <%=@result[:_embedded][:venues][0][:city][:name] %>, <%=@result[:_embedded][:venues][0][:state][:name] %> <%=@result[:_embedded][:venues][0][:postalCode]%></p>
 <p><a href='https://maps.google.com/?q=<%= @result[:_embedded][:venues][0][:location][:latitude]%>,<%= @result[:_embedded][:venues][0][:location][:longitude]%>' target='blank'> map</a></p>
 
-
 <%= form_tag("/concerts", method: "post") do %>
   <%= label_tag("Add to: ") %>
   <select name="category" id="city_id">
@@ -27,3 +26,4 @@
 <%#= c.category %><br/>
 <%#= c.user_id%><br/>
 <%# end %>
+

@@ -1,5 +1,6 @@
 <%= form_tag search_path do %>
     <%= text_field_tag :keyword %>
+    <%= hidden_field_tag :date  %>
    <%= submit_tag "Search" %>
   <% end %>
 
@@ -13,7 +14,8 @@
     <p>Venue: <%= event[:_embedded][:venues][0][:name]%></p>
   <% end %>
   <% else %>
-    <h1>Opps, we can't find anything for you</h1>
+    <h1>Oops, we can't find anything for you</h1>
 
 <% end %>  
 
+   

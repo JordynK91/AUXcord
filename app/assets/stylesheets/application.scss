@@ -12,35 +12,11 @@
  *
  */
 
+@import 'bootstrap';
+@import 'users';
+
 * {
 	font-family: 'Monda', sans-serif;
 }
 
-.container nav{
-	background-color: #E7E9EB;
-	/*position: fixed;*/
-	opacity: 0.9;
-	width: 100%;
-	z-index: 100;
-	text-align: right;
-}
-.navbar li{
-	display: inline-block;
-	width: 200px;
-	text-align: center;
-	}
 
-.navbar a {
-	display: block;
-	padding: 20px;
-	text-decoration: none;
-	color: #FFC0B4;
-	font: 18px 'Lato', sans-serif;
-	text-transform: uppercase;
-}
-.navbar a:hover {
-	background-color: #AFDBF6;
-}
-
-@import "bootstrap";
-@import 'users';

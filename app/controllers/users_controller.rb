@@ -13,9 +13,6 @@ class UsersController < ApplicationController
 	       user.update(user_params)
 	       flash[:message] = 'updated successfully'
            redirect_to "/users/#{user.id}"	
-		else
-		   flash[:message] = 'you are not this person'
-		    redirect_to "/users/#{user.id}"		
         end
     end    
  
@@ -37,7 +34,9 @@ class UsersController < ApplicationController
     if @user.destroy
     redirect_to '/users/new'
   end
-end	
+
+end
+
 
 	private
     def user_params

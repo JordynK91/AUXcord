@@ -2,9 +2,6 @@
 <div class="profile">
 
 
- <% if login_in? %>
-        <% if current_user.id == @user.id %>
-
 		<div class = 'headerphoto'>
 		<div class = 'header'>
 			Hey <%= @user.name %>.
@@ -117,8 +114,4 @@
 
 </div>	
 
-	<% end %>
 
-    <% else %>
-    <h1>Account info not valid. please login</h1>    
-	<% end %>

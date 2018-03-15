@@ -14,11 +14,9 @@ root to: 'home#index'
 
 
 post '/login', to: 'sessions#create'
-
-get '/new', to: 'sessions#new'
   
 post '/logout', to: 'sessions#destroy'
 
-  get '/login', to: 'home#login'
+get '/login', to: 'home#login'
 
 end

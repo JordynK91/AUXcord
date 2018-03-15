@@ -1,13 +1,29 @@
 
+<div><h1><%= @result[:name] %></h1></div>
+<div><img src="<%= @result[:images][5][:url] %>" width='500px'></div>
+<p><%= @result[:dates][:start][:localDate]%></p>
+<p><%= @result[:dates][:start][:localTime]%></p>
+<p>info: <%= @result[:info] %></p>
+<p>Venue: <%= @result[:_embedded][:venues][0][:name]%></p>
+<p><%= @result[:_embedded][:venues][0][:address][:line1]%>, <%=@result[:_embedded][:venues][0][:city][:name] %>, <%=@result[:_embedded][:venues][0][:state][:name] %> <%=@result[:_embedded][:venues][0][:postalCode]%></p>
+<p><a href='https://maps.google.com/?q=<%= @result[:_embedded][:venues][0][:location][:latitude]%>,<%= @result[:_embedded][:venues][0][:location][:longitude]%>' target='blank'> map</a></p>
 
+<%= form_tag("/concerts", method: "post") do %>
+  <%= label_tag("Add to: ") %>
+  <select name="category" id="city_id">
+    <option value="WishList">WishList</option>
+    <option value="Upcoming">Upcoming</option>
+    <option value="My past events">My past events</option>
+  </select>
+  <% hidden_field_tag "api_id", @result[:id]%>
+  <input type="hidden" name="api_id" value='<%= @result[:id]%>'>
+  <% hidden_field_tag "user_id", current_user.id%>
+  <%= submit_tag("Save") %>
+<% end %>
 
-
-    <div><h1><%= @result[:name] %></h1></div>
-    <div><img src="<%= @result[:images][5][:url] %>" width='500px'></div>
-    <p><%= @result[:dates][:start][:localDate]%></p>
-    <p><%= @result[:dates][:start][:localTime]%></p>
-    <p>info: <%= @result[:info] %></p>
-    <p>Venue: <%= @result[:_embedded][:venues][0][:name]%></p>
-    <p><%= @result[:_embedded][:venues][0][:address][:line1]%>, <%=@result[:_embedded][:venues][0][:city][:name] %>, <%=@result[:_embedded][:venues][0][:state][:name] %> <%=@result[:_embedded][:venues][0][:postalCode]%></p>
-    <p><a href='https://maps.google.com/?q=<%= @result[:_embedded][:venues][0][:location][:latitude]%>,<%= @result[:_embedded][:venues][0][:location][:longitude]%>' target='blank'> map</a></p>
+<%# @concerts.each do |c| %>
+<%#= c.api_id %><br/>
+<%#= c.category %><br/>
+<%#= c.user_id%><br/>
+<%# end %>
 

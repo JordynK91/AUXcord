@@ -3,6 +3,7 @@
     <%= hidden_field_tag :date  %>
    <%= submit_tag "Search" %>
   <% end %>
+<br/>
 
 
 <%if @results[:page][:totalElements] != 0 %>
@@ -14,8 +15,8 @@
     <p>Venue: <%= event[:_embedded][:venues][0][:name]%></p>
   <% end %>
   <% else %>
-    <h1>Oops, we can't find anything for you</h1>
 
+    <h1>Opps, we can't find anything for you</h1>
 <% end %>  
 
    

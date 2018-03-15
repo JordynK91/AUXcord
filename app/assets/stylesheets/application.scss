@@ -10,8 +10,6 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
- *= require_self
  */
 
 * {
@@ -43,3 +41,6 @@
 .navbar a:hover {
 	background-color: #AFDBF6;
 }
+
+@import "bootstrap";
+@import 'users';

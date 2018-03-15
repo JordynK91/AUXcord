@@ -41,9 +41,23 @@
  				<div class = 'upcoming-photo'>
  				<div class = 'upcoming-header'> What Do You Have on Deck? </div>
  				</div>
+                <h1>These are your upcoming shows:</h1>
+                
 
+                <!-- the data from concert databa-->
+ 				
+ 			    <% @concerts_upcomings.each do |u|%>
+	 				<%@event_id = u.api_id%>
+	 			    <%response = HTTParty.get("http://app.ticketmaster.com/discovery/v2/events/#{@event_id}.json?apikey=#{ENV["API_KEY"]}", format: :plain)%>
+	                <% @result = JSON.parse response, symbolize_names: true%>	                
+	                <div><h2><%= @result[:name] %></h2></div>
+					<div><a href="/events/<%= @event_id %>"><img src="<%= @result[:images][5][:url] %>" width='300px'></a></div>
+					<p><%= @result[:dates][:start][:localDate]%></p>
+					<p><%= @result[:dates][:start][:localTime]%></p>
+					<p>Venue: <%= @result[:_embedded][:venues][0][:name]%></p>
+                <%end%>
+           
 
- 				These are your upcoming shows:
 
 				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -57,6 +71,17 @@
   			<div class = 'wishlist-photo'>
  				<div class = 'wishlist-header'> Your Dreams Go Here</div>
  			</div>
+
+ 			<% @concerts_wishlist.each do |u|%>
+	 		    <%@event_id = u.api_id%>
+	 			<%response = HTTParty.get("http://app.ticketmaster.com/discovery/v2/events/#{@event_id}.json?apikey=#{ENV["API_KEY"]}", format: :plain)%>
+	            <% @result = JSON.parse response, symbolize_names: true%>	                
+	            <div><h2><%= @result[:name] %></h2></div>
+				<div><a href="/events/<%= @event_id %>"><img src="<%= @result[:images][5][:url] %>" width='300px'></a></div>
+				<p><%= @result[:dates][:start][:localDate]%></p>
+				<p><%= @result[:dates][:start][:localTime]%></p>
+				<p>Venue: <%= @result[:_embedded][:venues][0][:name]%></p>
+            <%end%>
   			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
   			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
   			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
@@ -69,6 +94,17 @@
 				<div class = 'history-photo'>
  				<div class = 'history-header'> Thanks for the Memories </div>
  			</div>
+
+ 			<% @concerts_pastevents.each do |u|%>
+	 		    <%@event_id = u.api_id%>
+	 			<%response = HTTParty.get("http://app.ticketmaster.com/discovery/v2/events/#{@event_id}.json?apikey=#{ENV["API_KEY"]}", format: :plain)%>
+	            <% @result = JSON.parse response, symbolize_names: true%>	                
+	            <div><h2><%= @result[:name] %></h2></div>
+				<div><a href="/events/<%= @event_id %>"><img src="<%= @result[:images][5][:url] %>" width='300px'></a></div>
+				<p><%= @result[:dates][:start][:localDate]%></p>
+				<p><%= @result[:dates][:start][:localTime]%></p>
+				<p>Venue: <%= @result[:_embedded][:venues][0][:name]%></p>
+            <%end%>
 
 
   		your history

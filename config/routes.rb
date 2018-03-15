@@ -17,5 +17,6 @@ root to: 'home#index'
   
   post '/logout', to: 'sessions#destroy'
 
+  get '/login', to: 'home#login'
 
 end

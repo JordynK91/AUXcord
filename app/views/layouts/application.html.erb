@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ConcertTracker</title>
+    <title>AuxCord</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= favicon_link_tag 'favicon.ico' %>
   </head>
 
+<div class="body">
   <body>
-    <nav>      
+    <div class="container">
+    <nav class="navbar">      
       <ul>
           <% if login_in? %>
             <li>Howdy! <%= current_user.username%></li>
@@ -21,6 +24,8 @@
           <% end %>              
       </ul>
     </nav>
+  </div>
+</div>
   	<% if flash[:message] %>
       <%= flash[:message] %>
     <% end%>

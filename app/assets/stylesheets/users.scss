@@ -23,18 +23,21 @@
 	background-color: black;
 }
 
-
 .tab-content {
 	text-align: center;
 }
 
-.userInfo{
+.userInfo {
 	text-align:center;
 }
 
+<<<<<<< HEAD
+.headertop {
+=======
 .headerphoto{
 background-image: url("photo1.jpeg");
 height: 800px;
+>>>>>>> b7cccfb8ac2a5a4a474c13bba43729c6270f9bf7
 width: 100%;
 margin: 0 auto;
 background-position: center;
@@ -49,6 +52,10 @@ text-align: center;
 text-shadow: 2px 2px white;
 }
 
+<<<<<<< HEAD
+.subheader {
+	font-size: 100px;
+=======
 .subheader{
 	border: solid;
 	background-color: black;
@@ -59,6 +66,7 @@ text-shadow: 2px 2px white;
 	top: 300px;
 	left: 2%;
 	text-align: center;
+>>>>>>> b7cccfb8ac2a5a4a474c13bba43729c6270f9bf7
 }
 
 .delete {color: red;

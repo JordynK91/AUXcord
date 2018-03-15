@@ -11,9 +11,9 @@
 <%= form_tag("/concerts", method: "post") do %>
   <%= label_tag("Add to: ") %>
   <select name="category" id="city_id">
-    <option value="WishList">WishList</option>
-    <option value="Upcoming">Upcoming</option>
-    <option value="My past events">My past events</option>
+    <option value="wish_list">WishList</option>
+    <option value="up_coming">Upcoming</option>
+    <option value="past_events">My past events</option>
   </select>
   <% hidden_field_tag "api_id", @result[:id]%>
   <input type="hidden" name="api_id" value='<%= @result[:id]%>'>

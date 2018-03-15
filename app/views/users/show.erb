@@ -5,8 +5,10 @@
  <% if login_in? %>
         <% if current_user.id == @user.id %>
 
-		<div class = 'headertop'>
+		<div class = 'headerphoto'>
+		<div class = 'header'>
 			Hey <%= @user.name %>.
+		</div>
 		<div class = 'subheader'>
 			Get Organized with AuxCord
 			</div>
@@ -25,6 +27,9 @@
   				  <a class="nav-link" id="history-tab" data-toggle="tab" href="#history" role="tab">Concert History</a>
   			</li>
   			<li class="nav-item">
+  				  <a class="nav-link" id="achievments-tab" data-toggle="tab" href="#achievments" role="tab">Achievments</a>
+  			</li>
+  			<li class="nav-item">
   				  <a class="nav-link" id="user-tab" data-toggle="tab" href="#user" role="tab">Edit Your Profile</a>
   			</li>
 		</ul>
@@ -33,7 +38,26 @@
 		<div class="tab-content">
  
  			<div class="tab-pane active" id="upcoming" role="tabpanel">
- 				These are your upcoming shows:
+ 				<div class = 'upcoming-photo'>
+ 				<div class = 'upcoming-header'> What Do You Have on Deck? </div>
+ 				</div>
+                <h1>These are your upcoming shows:</h1>
+                
+
+                <!-- the data from concert databa-->
+ 				
+ 			    <% @concerts_upcomings.each do |u|%>
+	 				<%@event_id = u.api_id%>
+	 			    <%response = HTTParty.get("http://app.ticketmaster.com/discovery/v2/events/#{@event_id}.json?apikey=#{ENV["API_KEY"]}", format: :plain)%>
+	                <% @result = JSON.parse response, symbolize_names: true%>	                
+	                <div><h2><%= @result[:name] %></h2></div>
+					<div><a href="/events/<%= @event_id %>"><img src="<%= @result[:images][5][:url] %>" width='300px'></a></div>
+					<p><%= @result[:dates][:start][:localDate]%></p>
+					<p><%= @result[:dates][:start][:localTime]%></p>
+					<p>Venue: <%= @result[:_embedded][:venues][0][:name]%></p>
+                <%end%>
+           
+
 
 				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -44,6 +68,20 @@
   			</div>
 
   		<div class="tab-pane" id="wishlist" role="tabpanel">
+  			<div class = 'wishlist-photo'>
+ 				<div class = 'wishlist-header'> Your Dreams Go Here</div>
+ 			</div>
+
+ 			<% @concerts_wishlist.each do |u|%>
+	 		    <%@event_id = u.api_id%>
+	 			<%response = HTTParty.get("http://app.ticketmaster.com/discovery/v2/events/#{@event_id}.json?apikey=#{ENV["API_KEY"]}", format: :plain)%>
+	            <% @result = JSON.parse response, symbolize_names: true%>	                
+	            <div><h2><%= @result[:name] %></h2></div>
+				<div><a href="/events/<%= @event_id %>"><img src="<%= @result[:images][5][:url] %>" width='300px'></a></div>
+				<p><%= @result[:dates][:start][:localDate]%></p>
+				<p><%= @result[:dates][:start][:localTime]%></p>
+				<p>Venue: <%= @result[:_embedded][:venues][0][:name]%></p>
+            <%end%>
   			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
   			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
   			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
@@ -53,6 +91,22 @@
   		</div>
   	
   		<div class="tab-pane" id="history" role="tabpanel">
+				<div class = 'history-photo'>
+ 				<div class = 'history-header'> Thanks for the Memories </div>
+ 			</div>
+
+ 			<% @concerts_pastevents.each do |u|%>
+	 		    <%@event_id = u.api_id%>
+	 			<%response = HTTParty.get("http://app.ticketmaster.com/discovery/v2/events/#{@event_id}.json?apikey=#{ENV["API_KEY"]}", format: :plain)%>
+	            <% @result = JSON.parse response, symbolize_names: true%>	                
+	            <div><h2><%= @result[:name] %></h2></div>
+				<div><a href="/events/<%= @event_id %>"><img src="<%= @result[:images][5][:url] %>" width='300px'></a></div>
+				<p><%= @result[:dates][:start][:localDate]%></p>
+				<p><%= @result[:dates][:start][:localTime]%></p>
+				<p>Venue: <%= @result[:_embedded][:venues][0][:name]%></p>
+            <%end%>
+
+
   		your history
 	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -62,7 +116,20 @@
 	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
   	</div>
 
+	<div class="tab-pane" id="achievments" role="tabpanel">
+			<div class = 'achievments-photo'> 
+ 			<div class = 'achivements-header'> Baby, You've Earned It</div>
+ 		</div>
+ 				your achievements
+  			</div>
+
+
 		<div class="tab-pane" id="user" role="tabpanel">
+
+		<div class = 'user-photo'>
+ 			<div class = 'user-header'> Be Yourself </div>
+ 		</div>
+
 			<%= form_for @user do |f| %>
 	          <div>Username:</div>
 	          	<div><%= f.text_field :username %></div>

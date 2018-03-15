@@ -1,7 +1,11 @@
 class UsersController < ApplicationController
+	
 	def show
-		@user= User.find_by_id(params[:id])
-	end 
+		@user = User.find_by_id(params[:id])
+		@concerts_upcomings = Concert.where(user_id: params[:id]).where(category: "up_coming")
+		@concerts_wishlist = Concert.where(user_id: params[:id]).where(category: "wish_list")
+		@concerts_pastevents = Concert.where(user_id: params[:id]).where(category: "past_events")
+    end
 	
 	def update
 		user= User.find_by_id(params[:id])
@@ -20,12 +24,12 @@ class UsersController < ApplicationController
 	end
 
 	def create
-	user = User.new(user_params)
-    if user.save
-      redirect_to "/users/#{user.id}"
-    else 
-      flash[:alert] = "Account Info Invalid. Please Try Again." 
-    end
+		user = User.new(user_params)
+	    if user.save
+	      redirect_to "/users/#{user.id}"
+	    else 
+	      flash[:alert] = "Account Info Invalid. Please Try Again." 
+	    end
   end
 
   def destroy 
@@ -42,3 +46,4 @@ end
     end 
 
 end
+

@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   get '/events/:id', to: 'searches#show'
 
 resources :users
+resources :concerts
+
 
 
 root to: 'home#index'

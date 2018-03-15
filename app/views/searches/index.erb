@@ -5,7 +5,6 @@
 
 <br/>
 
-
 <%if @results[:page][:totalElements] != 0 %>
   <p> We got <%= @results[:_embedded][:events].length %> results for you</p>
   <% @results[:_embedded][:events].each do |event| %>   
@@ -16,6 +15,5 @@
   <% end %>
   <% else %>
     <h1>Opps, we can't find anything for you</h1>
-
 <% end %>  
 

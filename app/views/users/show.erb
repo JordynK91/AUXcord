@@ -1,42 +1,6 @@
+
 <div class="profile">
 
-<h1>User Profile</h1>
-
-<% if @user != nil%>
-	<div>Username: <%= @user.username %></div>
-	<div>Name: <%= @user.name %></div>
-	<div>Bio: <%= @user.bio %></div>
-	<div>Email: <%= @user.email %></div>
-	<div>Location: <%= @user.location %></div>
-</div>
-
-
-<div class="info">    
-    <% if login_in? %>
-        <% if current_user.id == @user.id %>
-            <div><h1>Change your info</h1></div>
-	        <%= form_for @user do |f| %>
-	          <div class="field">Username:</div>
-	          <div><%= f.text_field :username, size: "30x10" %></div>
-	          <div class="field">Email:</div>
-	          <div><%= f.text_field :email, size: "30x10"%></div>
-	          <div class="field">Password:</div>
-	          <div><%= f.text_field :password, size: "30x10" %></div>
-	          <div class="field">Bio:</div>
-	          <div><%= f.text_area :bio, size: "75x10" %></div>
-	          <div class="field">Location:</div>
-	          <div><%= f.text_field :location, size: "30x10" %></div>
-	          <div class="field">Name:</div>
-	          <div><%= f.text_field :name, size: "30x10" %></div>
-	          <div class="field">Favorites:</div>
-	          <div><%= f.text_field :faves, size: "30x10" %></div>
-	          <div class="submit"><%= f.submit "Save"%></div>
-
-          <% end %>
-
- 
- <%= link_to'Sign Out', logout_path, method: :destroy %>
- <div><%= link_to('Delete Your Account', user_path, method: :delete)%></div>
 
  <% if login_in? %>
         <% if current_user.id == @user.id %>
@@ -118,13 +82,9 @@
           <% end %>
 
  <div><%= link_to('Delete Your Account', user_path, method: :delete, class: 'delete')%></div>
-</div>
-</div>
-</div>
-</div>
-</div>	
 
-<% end %>
+
+</div>	
 
 	<% end %>
 

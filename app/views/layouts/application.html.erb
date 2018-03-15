@@ -1,26 +1,39 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ConcertTracker</title>
+    <title>AuxCord</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= favicon_link_tag 'favicon.ico' %>
   </head>
 
+<div class="body">
   <body>
-    <nav>      
+    <div class="container">
+    <nav class="navbar">      
       <ul>
-          <% if login_in? %>
-            <li>Howdy! <%= current_user.username%></li>
-            <li><a href="/search">Search</a></li>
+          <% if login_in? %> 
+             <nav class="navbar navbar-default">
+               <div class="container-fluid">
+               <div class="navbar-header">
+                 <div class="navbar-brand" >AuxCord</div>
+             <ul class = 'nav navbar-nav'>
+            <li class = 'active'><a href="/search">Search</a></li>
             <li><a href="/users/<%=current_user.id%>">Profile</a></li>
             <li><%= link_to'Sign Out', logout_path, method: :destroy %></li>
+            </div>
+          </div>
+          </ul>
+           </nav>
           <% else %>
             <% link_to root_path %>
           <% end %>              
       </ul>
     </nav>
+  </div>
+</div>
   	<% if flash[:message] %>
       <%= flash[:message] %>
     <% end%>

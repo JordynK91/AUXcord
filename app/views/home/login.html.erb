@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>AuxCord</title>
+  <title>AuxCord</title>
 </head>
 <div class="body">
-<body>
 
   <body>
+    
     <div class="precontainer">
     <nav class="prenavbar">      
       <ul>
@@ -17,16 +17,19 @@
   </div>
 </div>
 
-<h1>AuxCord</h1>
-
-<h2>Discover and share your favorite live music events</h2>
-
-<div class="bkg1"></div>
-
 <% if flash[:alert] %>
          <%= flash[:alert] %> 
 <% end %>
 
+
+<h2>Log In:</h2>
+<div class="login">
+    <%= form_tag(login_path) do  %>
+    Username: <%= text_field_tag :username%></br>
+    Password: <%= text_field_tag :password, "", type: "password" %></br>
+    <%= submit_tag 'Login' %>
+    <% end %>
+  </div>
 
 </body>
 </html>

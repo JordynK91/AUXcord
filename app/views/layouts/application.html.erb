@@ -24,7 +24,7 @@
     <% if login_in? %> 
       <ul class="nav navbar-nav navbar-right"> 
         <li><a href="/search">Search</a></li>
-        <li><a href="/users">Profile</a></li>
+        <li> <%= link_to "Profile", user_path(current_user)%></li>
         <li><%= link_to'Sign Out', logout_path, method: :destroy %></li>
       </ul>
           <% else %>

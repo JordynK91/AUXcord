@@ -58,4 +58,4 @@ gem 'jquery-rails'
 #enables boostrap for styling
 gem 'bootstrap', '~> 4.0.0'
 #makes page shareable to social media
-gem 'shareable'
+gem 'shareable', :git => "https://github.com/simon0191/shareable"

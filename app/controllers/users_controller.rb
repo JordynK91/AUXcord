@@ -23,7 +23,7 @@ class UsersController < ApplicationController
 	def create
 		user = User.new(user_params)
 	    if user.save
-	      redirect_to "/users/#{user.id}"
+	      redirect_to "/login"
 	    else 
 	      flash[:alert] = "Account Info Invalid. Please Try Again." 
 	    end

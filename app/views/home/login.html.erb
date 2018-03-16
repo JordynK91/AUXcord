@@ -14,8 +14,8 @@
 <h2><u>Log In:</u></h2>
 
     <%= form_tag(login_path) do  %>
-    Username: <%= text_field_tag :username%></br>
-    Password: <%= text_field_tag :password, "", type: "password" %></br>
+    <div class="user">Username: <%= text_field_tag :username%></div>
+    <div class="pass">Password: <span class="box2"><%= text_field_tag :password, "", type: "password" %></span></div>
     <%= submit_tag 'Login' %>
     <% end %>
   </div>

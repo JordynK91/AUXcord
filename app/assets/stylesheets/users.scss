@@ -1,12 +1,13 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
 .profile {
-    padding-left: 20px;
+    // padding-left: 20px;	
 }
 
 .info {
-    padding: 20px;
+    // padding: 20px;
 }
 
 .field {
@@ -29,6 +30,10 @@
     text-align: center;
 }
 
+.nav {
+    margin-left: 200px;
+}
+
 .headerphoto {
     background-image: url("photo1.jpeg");
     height: 800px;
@@ -41,20 +46,21 @@
 
 .header {
     font-size: 200px;
+    width: 100%;
     color: black;
     text-align: center;
     text-shadow: 2px 2px white;
 }
 
 .subheader {
-    border: solid;
+    // border: solid;
     background-color: black;
-    width: 80%;
+    width: 100%;
     font-size: 80px;
-    color: white;
+    color: #FFFFFF;
     position: relative;
     top: 300px;
-    left: 2%;
+    // left: 2%;
     text-align: center;
 }
 
@@ -145,4 +151,8 @@
 
 .createAccount {
     padding: 20px;
+}
+
+.upcoming {
+    padding: 20px;  
 }

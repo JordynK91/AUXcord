@@ -10,6 +10,8 @@ class SearchesController < ApplicationController
         end
     end
 
+
+
     def show
         @concerts = Concert.all
         @event_id = params[:id]

@@ -28,49 +28,55 @@
     : width => 205,
     : height => 115,
     : fallback => false
-  }, {
+   }, {
     : ratio => "3_2",
     : url => "https://s1.ticketm.net/dam/a/2f7/814fd790-4326-40d6-af6b-5c8f3c3a22f7_553361_ARTIST_PAGE_3_2.jpg",
     : width => 305,
     : height => 203,
     : fallback => false
-  }, {
+   }, {
     : ratio => "16_9",
     : url => "https://s1.ticketm.net/dam/a/2f7/814fd790-4326-40d6-af6b-5c8f3c3a22f7_553361_TABLET_LANDSCAPE_16_9.jpg",
     : width => 1024,
     : height => 576,
     : fallback => false
-  }, {: ratio => "16_9",
+   }, {: ratio => "16_9",
     : url => "https://s1.ticketm.net/dam/a/2f7/814fd790-4326-40d6-af6b-5c8f3c3a22f7_553361_TABLET_LANDSCAPE_LARGE_16_9.jpg",
     : width => 2048,
     : height => 1152,
     : fallback => false
-  }, {: ratio => "3_2",
+   }, {: ratio => "3_2",
     : url => "https://s1.ticketm.net/dam/a/2f7/814fd790-4326-40d6-af6b-5c8f3c3a22f7_553361_RETINA_PORTRAIT_3_2.jpg",
     : width => 640,
     : height => 427,
     : fallback => false
-  }, {: ratio => "16_9",
+   }, {: ratio => "16_9",
     : url => "https://s1.ticketm.net/dam/a/2f7/814fd790-4326-40d6-af6b-5c8f3c3a22f7_553361_RETINA_PORTRAIT_16_9.jpg",
     : width => 640,
     : height => 360,
     : fallback => false
-  }, {: ratio => "16_9",
+   }, {: ratio => "16_9",
     : url => "https://s1.ticketm.net/dam/a/2f7/814fd790-4326-40d6-af6b-5c8f3c3a22f7_553361_RETINA_LANDSCAPE_16_9.jpg",
     : width => 1136,
     : height => 639,
     : fallback => false
-  }], : sales => {: public => {: startDateTime => "2018-03-12T15:00:00Z",
+   }], 
+  : sales => {
+    : public => {
+      : startDateTime => "2018-03-12T15:00:00Z",
       : startTBD => false,
       : endDateTime => "2018-05-20T01:00:00Z"
     },
-    : presales => [{: startDateTime => "2018-03-06T15:00:00Z",
+    : presales => [
+      {
+      : startDateTime => "2018-03-06T15:00:00Z",
       : endDateTime => "2018-03-08T23:00:00Z",
       : name => "eXPERIENCE Group Presale"
-    }, {: startDateTime => "2018-03-06T16:00:00Z",
+      }, {
+      : startDateTime => "2018-03-06T16:00:00Z",
       : endDateTime => "2018-03-08T23:00:00Z",
       : name => "iNNOCENCE Group Presale"
-    }, {: startDateTime => "2018-03-06T15:00:00Z",
+      }, {: startDateTime => "2018-03-06T15:00:00Z",
       : endDateTime => "2018-03-08T23:00:00Z",
       : name => "Fan Club VIP Packages Presale"
     }, {: startDateTime => "2018-03-06T18:00:00Z",
@@ -97,26 +103,34 @@
       : endDateTime => "2018-04-20T03:00:00Z",
       : name => "Citi® Cardmember Preferred Tickets"
     }]
-  }, : dates => {: start => {: localDate => "2018-05-19",
+  }, 
+  : dates => {
+    : start => {
+      : localDate => "2018-05-19",
       : localTime => "20:00:00",
       : dateTime => "2018-05-20T01:00:00Z",
       : dateTBD => false,
       : dateTBA => false,
       : timeTBA => false,
       : noSpecificTime => false
-    },
+     },
     : timezone => "America/Chicago",
     : status => {: code => "onsale"
     },
     : spanMultipleDays => false
-  }, : classifications => [{: primary => true,
-    : segment => {: id => "KZFzniwnSyZfZ7v7nJ",
-      : name => "Music"
-    },
-    : genre => {: id => "KnvZfZ7vAeA",
-      : name => "Rock"
-    },
-    : subGenre => {: id => "KZazBEonSMnZfZ7v6F1",
+  }, 
+  : classifications => [
+      {
+      : primary => true,
+      : segment => {
+        : id => "KZFzniwnSyZfZ7v7nJ",
+        : name => "Music"
+      },
+      : genre => {
+        : id => "KnvZfZ7vAeA",
+        : name => "Rock"
+      },
+      : subGenre => {: id => "KZazBEonSMnZfZ7v6F1",
       : name => "Pop"
     },
     : type => {: id => "KZAyXgnZfZ7v7nI",

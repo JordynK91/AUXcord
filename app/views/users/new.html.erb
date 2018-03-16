@@ -5,6 +5,7 @@
 </head>
 <body>
 
+<div class="createAccount">
 	<div><h1>Make An Account</h1></div>
 	        <%= form_for @user do |f| %>
 	          <div>Username:</div>
@@ -19,10 +20,11 @@
 	          <div><%= f.text_field :location %></div>
 	          <div>First Name:</div>
 	          <div><%= f.text_field :name %></div>
-	          <div>favorites:</div>
-	          <div><%= f.text_field :faves %></div>
+	          <div>Favorite Bands:</div>
+	          <div><%= f.text_field :faves %></div></br>
 	          <%= f.submit "Save"%>
 	          <% end %>
+</div>   
 
 </body>
 </html>

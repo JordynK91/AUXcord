@@ -5,14 +5,14 @@
 </head>
 <body>
 
+<div class="login">
 
 <% if flash[:alert] %>
          <%= flash[:alert] %> 
 <% end %>
 
+<h2><u>Log In:</u></h2>
 
-<h2>Log In:</h2>
-<div class="login">
     <%= form_tag(login_path) do  %>
     Username: <%= text_field_tag :username%></br>
     Password: <%= text_field_tag :password, "", type: "password" %></br>

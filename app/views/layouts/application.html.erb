@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-  <title>AuxCord</title>
+  <title>AUXcord</title>
   <%= csrf_meta_tags %>
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -19,15 +19,9 @@
 <nav class="navbar navbar-default">
   <div class="container">
     <div class="navbar-header">
-    <!--   <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
-      </button> -->
-      <a class="navbar-brand" href="/">AuxCord</a>
+      <a class="navbar-brand" href="/">AUXcord</a>
     </div>
     <% if login_in? %> 
-    <!-- <div class="collapse navbar-collapse" id="myNavbar"> -->
       <ul class="nav navbar-nav navbar-right"> 
         <li><a href="/search">Search</a></li>
         <li><a href="/users">Profile</a></li>
@@ -35,8 +29,8 @@
       </ul>
           <% else %>
       <ul class="nav navbar-nav navbar-right"> 
-        <li><a href="/users/new/">Sign Up</a></li>
-        <li><a href="/login">Login</a></li>
+      <li><a href="/users/new" class="btn btn-default btn-lg"><span class="glyphicon"></span>Sign Up</a></li>
+      <li><a href="/login" class="btn btn-default btn-lg"><span class="glyphicon"></span>Login</a></li>
           <% end %>        
       </ul>
     </div>
@@ -52,7 +46,7 @@
 
 <!-- Footer -->
 <footer class="container-fluid bg-4 text-center">
- <p>This is the footer and we can <a href="https://www.#">link something</a></p> 
+ <p>Copyright © <%= Time.current.year %> AUXcord</p> 
 </footer>
   </body>
 </html>

@@ -1,22 +1,75 @@
 <%= form_tag search_path do %>
     <%= text_field_tag :keyword %>
+    <%= select_tag(:state_id, options_for_select(
+        [["Alabama","AL"],
+        ["Alaska","AK"],
+        ["Arizona","AZ"],
+        ["Arkansas","AR"],
+        ["California","CA"],
+        ["Colorado","CO"],
+        ["Connecticut","CT"],
+        ["Delaware","DE"],
+        ["District of Columbia","DC"],
+        ["Florida","FL"],
+        ["Georgia","GA"],
+        ["Hawaii","HI"],
+        ["Idaho","ID"],
+        ["Illinois","IL"],
+        ["Indiana","IN"],
+        ["Iowa","IA"],
+        ["Kansas","KS"],
+        ["Kentucky","KY"],
+        ["Louisiana","LA"],
+        ["Maine","ME"],
+        ["Maryland","MD"],
+        ["Massachusetts","MA"],
+        ["Michigan","MI"],
+        ["Minnesota","MN"],
+        ["Mississippi","MS"],
+        ["Missouri","MO"],
+        ["Montana","MT"],
+        ["Nebraska","NE"],
+        ["Nevada","NV"],
+        ["New Hampshire","NH"],
+        ["New Jersey","NJ"],
+        ["New Mexico","NM"],
+        ["New York","NY"],
+        ["North Carolina","NC"],
+        ["North Daktota","ND"],
+        ["Ohio","OH"],
+        ["Oklahoma","OK"],
+        ["Oregon","OR"],
+        ["Pennsylvania","PA"],
+        ["Rhode Island","RI"],
+        ["South Carolina","SC"],
+        ["South Dakota","SD"],
+        ["Tennessee","TN"],
+        ["Texas","TX"],
+        ["Utah","UT"],
+        ["Vermont","VT"],
+        ["Virginia","VA"],
+        ["Washington","WA"],
+        ["West Virginia","WV"],
+        ["Wisconsin","WI"],
+        ["Wyoming","WY"]
+    ])) %>
     <%= hidden_field_tag :date  %>
    <%= submit_tag "Search" %>
   <% end %>
 <br/>
 
-
-<%if @results[:page][:totalElements] != 0 %>
-  <p> We got <%= @results[:_embedded][:events].length %> results for you</p>
-  <% @results[:_embedded][:events].each do |event| %>   
-    <div><h3><%= event[:name] %></h3></div>
-    <div><a href='/events/<%= event[:id] %>'><img src="<%= event[:images][2][:url] %>" width='305px'></a></div>
-    <p><%= event[:dates][:start][:localDate]%> <%= event[:dates][:start][:localTime]%></p>
-    <p>Venue: <%= event[:_embedded][:venues][0][:name]%></p>
-  <% end %>
-  <% else %>
-
-    <h1>Opps, we can't find anything for you</h1>
+<%if @results %>
+    <%if @results[:page][:totalElements] != 0 %>
+        <p> We got <%= @results[:_embedded][:events].length %> results for you</p>
+        <% @results[:_embedded][:events].each do |event| %>   
+            <div><h3><%= event[:name] %></h3></div>
+            <div><a href='/events/<%= event[:id] %>'><img src="<%= event[:images][2][:url] %>" width='305px'></a></div>
+            <p><%= event[:dates][:start][:localDate]%> <%= event[:dates][:start][:localTime]%></p>
+            <p>Venue: <%= event[:_embedded][:venues][0][:name]%></p>
+        <% end %>
+        <% else %>
+            <h1>Opps, we can't find anything for you</h1>
+    <% end %>
 <% end %>  
 
    

@@ -4,6 +4,7 @@
 
 .profile {
     // padding-left: 20px;	
+    background-color: black;
 }
 
 .info {
@@ -31,11 +32,16 @@
 }
 
 .nav {
-    margin-left: 200px;
+    margin-left: 230px;
+    // background-color: black;  
+}
+
+.nav-item {
+    margin-left: 20px;
 }
 
 .headerphoto {
-    background-image: url("live.jpeg");
+    background-image: url("mixing.jpeg");
     height: 800px;
     width: 100%;
     margin: 0 auto;

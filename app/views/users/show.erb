@@ -56,7 +56,13 @@
 						<p><%= @result[:dates][:start][:localDate]%></p>
 						<p><%= @result[:dates][:start][:localTime]%></p>
 						<p>Venue: <%= @result[:_embedded][:venues][0][:name]%></p>
-	                <%end%>	                  
+	                
+	                    <!-- delete this concert from concert database-->
+	                    <%= form_tag(concert_path, method: "delete") do %>
+	                        <input type='hidden' name='api_id' value="<%=@event_id%>">
+	                        <%= submit_tag("Delete") %>
+                        <%end%>	
+                    <% end %>                  
                 <%end%>
 				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -84,6 +90,12 @@
 					<p><%= @result[:dates][:start][:localDate]%></p>
 					<p><%= @result[:dates][:start][:localTime]%></p>
 					<p>Venue: <%= @result[:_embedded][:venues][0][:name]%></p>
+					<!-- delete this concert from concert database-->
+					<%= form_tag(concert_path, method: "delete") do %>
+                        <input type='hidden' name='api_id' value="<%=@event_id%>">
+                        <%= submit_tag("Delete") %>
+                    <% end %>
+
 	            <%end%>
 	        <%end%>    
   			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
@@ -112,7 +124,12 @@
 					<p><%= @result[:dates][:start][:localDate]%></p>
 					<p><%= @result[:dates][:start][:localTime]%></p>
 					<p>Venue: <%= @result[:_embedded][:venues][0][:name]%></p>
-	            <%end%>
+	                <!-- delete this concert from concert database-->
+	                <%= form_tag(concert_path, method: "delete") do %>
+                        <input type='hidden' name='api_id' value="<%=@event_id%>">
+                        <%= submit_tag("Delete") %>
+                    <% end %>
+                <%end%>    
 	        <%end%>    
 
 

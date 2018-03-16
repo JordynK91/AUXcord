@@ -44,7 +44,7 @@
                 <h1>These are your upcoming shows:</h1>
                 
 
-                <!-- the data from concert databa-->
+                <!-- the data from concert database-->
  				
  			    <% @concerts_upcomings.each do |u|%>
 	 				<%@event_id = u.api_id%>
@@ -95,6 +95,8 @@
  				<div class = 'history-header'> Thanks for the Memories </div>
  			</div>
 
+ 			<!-- the data from concert database-->
+
  			<% @concerts_pastevents.each do |u|%>
 	 		    <%@event_id = u.api_id%>
 	 			<%response = HTTParty.get("http://app.ticketmaster.com/discovery/v2/events/#{@event_id}.json?apikey=#{ENV["API_KEY"]}", format: :plain)%>
@@ -129,6 +131,8 @@
 		<div class = 'user-photo'>
  			<div class = 'user-header'> Be Yourself </div>
  		</div>
+
+ 		<!-- the data from concert database-->
 
 			<%= form_for @user do |f| %>
 	          <div>Username:</div>

@@ -30,20 +30,21 @@
   				  <a class="nav-link" id="user-tab" data-toggle="tab" href="#user" role="tab">Edit Your Profile</a>
   			</li>
 		</ul>
+
 </div>	
 </div>
 
 <!-- tab content -->
 		<div class="tab-content">
- 
+
  			<div class="tab-pane active" id="upcoming" role="tabpanel">
  				<div class = 'upcoming-photo'>
- 				<div class = 'upcoming-header'> What Do You Have on Deck? </div>
+ 					<div class = 'upcoming-header'> What Do You Have on Deck? </div>
  				</div>
                 <h1>These are your upcoming shows:</h1>
                 <br/>
                 <br/>
-             
+
                 <!-- the upcoming concerts from concert database-->
  				<%if @concerts_upcomings[0] == nil %>
  				     <h1>You don't have any concerts listed here</h1> 	 			    
@@ -51,26 +52,27 @@
 	                <% @concerts_upcomings.each do |u|%>
 		 				<%@event_id = u.api_id%>
 		 			    <%response = HTTParty.get("http://app.ticketmaster.com/discovery/v2/events/#{@event_id}.json?apikey=#{ENV["API_KEY"]}", format: :plain)%>
-		                <% @result = JSON.parse response, symbolize_names: true%>	                
-		                <div><h2><%= @result[:name] %></h2></div>
-						<div><a href="/events/<%= @event_id %>"><img src="<%= @result[:images][5][:url] %>" width='300px'></a></div>
-						<p><div name='concertDate'><%= @result[:dates][:start][:localDate]%><div></p>
-						<p><%= @result[:dates][:start][:localTime]%></p>
-						<p>Venue: <%= @result[:_embedded][:venues][0][:name]%></p>
-	                
-	                    <!-- delete this concert from concert database-->
-	                    <%= form_tag(concert_path, method: "delete") do %>
-	                        <input type='hidden' name='api_id' value="<%=@event_id%>">
-	                        <%= submit_tag("Delete") %>
-                        <%end%>	
+		                <% @result = JSON.parse response, symbolize_names: true%>
+		                <%currentDate = Date.today%>
+	                    <%concertDate = Date::strptime(@result[:dates][:start][:localDate], "%Y-%m-%d")%>
+	                    <!-- Check the concert if it's passed the date-->
+	                    <%if currentDate > concertDate%>
+	                        <% u.update(category: 'past_events')%>		        
+	                    <%else%>	                
+			                <div><h2><%= @result[:name] %></h2></div>
+							<div><a href="/events/<%= @event_id %>"><img src="<%= @result[:images][5][:url] %>" width='300px'></a></div>
+							<p><div name='concertDate'><%= @result[:dates][:start][:localDate]%></div></p>
+							<p><%= @result[:dates][:start][:localTime]%></p>
+							<p>Venue: <%= @result[:_embedded][:venues][0][:name]%></p>
+							<!-- delete this concert from concert database-->
+	                        <%= form_tag(concert_path, method: "delete") do %>
+	                             <input type='hidden' name='api_id' value="<%=@event_id%>">
+	                            <%= submit_tag("Delete") %>
+                            <%end%>
+	                    <%end%>
+	                    	
                     <% end %>                  
                 <%end%>
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-				quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-				consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-				cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-				roident, sunt in culpa qui officia deserunt mollit anim id est laborum.
   			</div>
 
   		<div class="tab-pane" id="wishlist" role="tabpanel">
@@ -99,12 +101,6 @@
 
 	            <%end%>
 	        <%end%>    
-  			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-  			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-  			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-  			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-  			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-  			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
   		</div>
   	
   		<div class="tab-pane" id="history" role="tabpanel">
@@ -119,7 +115,11 @@
 	 			<% @concerts_pastevents.each do |u|%>
 		 		    <%@event_id = u.api_id%>
 		 			<%response = HTTParty.get("http://app.ticketmaster.com/discovery/v2/events/#{@event_id}.json?apikey=#{ENV["API_KEY"]}", format: :plain)%>
-		            <% @result = JSON.parse response, symbolize_names: true%>	                
+		            <% @result = JSON.parse response, symbolize_names: true%>
+		            <% if Archive.find_by_api_id(@event_id)!= nil%>
+		            <% else%>	
+			            <% Archive.create(api_id: @event_id, user_id: current_user.id, name: @result[:name], img_url: @result[:images][5][:url], date: @result[:dates][:start][:localDate], time: @result[:dates][:start][:localTime], venue: @result[:_embedded][:venues][0][:name], info: @result[:info], category:@result[:classifications][0][:genre][:name] )%>
+			        <% end %>                   
 		            <div><h2><%= @result[:name] %></h2></div>
 					<div><a href="/events/<%= @event_id %>"><img src="<%= @result[:images][5][:url] %>" width='300px'></a></div>
 					<p><%= @result[:dates][:start][:localDate]%></p>
@@ -132,15 +132,6 @@
                     <% end %>
                 <%end%>    
 	        <%end%>    
-
-
-  		your history
-	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
   	</div>
 
 	<div class="tab-pane" id="achievments" role="tabpanel">
@@ -148,8 +139,42 @@
  			<div class = 'achivements-header'> Baby, You've Earned It</div>
  		</div>
  				your achievements
-  			</div>
+        <br/>
+ 		<% @archives.each do |a| %>
+ 		<%= a.name %><br/>
+ 		<%= a.date %><br/>
+ 		<%= a.venue%><br/>
+ 		<%end%>
+  	</div>
+ 				<div class = 'achivements-header'> Baby, You've Earned It</div>
+ 			</div>
 
+ 			<!-- achivements determined by archive data -->
+ 			<% if @archives.length >= 1 %>
+ 				<div class = 'badge' id = 'badge1'> </div>
+ 			<% end %>
+
+ 			<% if @archives.length >= 5 %>
+ 				<div> Roadie: 5 concerts attended </div>
+ 			<% end %>
+
+ 			<% if @archives.length >= 10 %>
+ 				<div> MC: 10 concerts attended </div>
+ 			<% end %>
+
+			<% if @archives.length >= 25 %>
+ 				<div> Shredder: 25 concerts attended </div>
+ 			<% end %>
+
+ 			<% if @archives.length >= 50  %>
+ 				<div> Rock Star: 50 concerts attended</div>
+ 			<% end %>
+
+ 			<% if @archives.length >= 100  %>
+ 				<div> Legendary: 100 concerts attended! </div>
+ 			<% end %>
+
+  		</div> 
 
 		<div class="tab-pane" id="user" role="tabpanel">
 
@@ -157,8 +182,7 @@
  			<div class = 'user-header'> Be Yourself </div>
  		</div>
 
- 		<!-- the data from concert database-->
-
+ 
 			<%= form_for @user do |f| %>
 	          <div>Username:</div>
 	          	<div><%= f.text_field :username %></div>
@@ -177,8 +201,8 @@
 	          <%= f.submit "Save"%>
           <% end %>
 
- <div><%= link_to('Delete Your Account', user_path, method: :delete, class: 'delete')%></div>
-
+ 	<div><%= link_to('Delete Your Account', user_path, method: :delete, class: 'delete')%></div>
+</div>
 
 </div>	
 

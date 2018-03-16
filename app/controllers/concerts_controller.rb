@@ -23,22 +23,11 @@ class ConcertsController < ApplicationController
 	    end			
 	end
 
-  def moveConcertToPast
-      params[:concertDate]
-      currentDate = Date.today
-      concertDate = Date::strptime('2018-03-20', "%Y-%m-%d")
-      if currentDate <= concertDate 
-         flash[:message] = 'this concert is not in the past'
-         redirect_to "/users/#{current_user.id}"
-      else 
-         flash[:message] = 'this concert is in the past'
-         redirect_to "/users/#{current_user.id}"
-      end            
-  end
-
   def destroy
     concert = Concert.find_by_api_id(params[:api_id])
+    archive = Archive.where(user_id: current_user.id).find_by_api_id(params[:api_id])
     concert.destroy
+    archive.destroy 
     flash[:message] = 'this concert has been deleted from your lists'
     redirect_to "/users/#{current_user.id}"
   end  

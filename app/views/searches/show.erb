@@ -7,8 +7,12 @@
 <p>genre: <%= @result[:classifications][0][:genre][:name]%></p>
 <p>Venue: <%= @result[:_embedded][:venues][0][:name]%></p>
 <p><%= @result[:_embedded][:venues][0][:address][:line1]%>, <%=@result[:_embedded][:venues][0][:city][:name] %>, <%=@result[:_embedded][:venues][0][:state][:name] %> <%=@result[:_embedded][:venues][0][:postalCode]%></p>
-<p><a href='https://maps.google.com/?q=<%= @result[:_embedded][:venues][0][:location][:latitude]%>,<%= @result[:_embedded][:venues][0][:location][:longitude]%>' target='blank'> map</a></p>
-
+<% if @result[:_embedded][:venues][0][:location] == nil %>
+   <p>no map to show</p> 
+<% else %>
+   <p><a href='https://maps.google.com/?q=<%= @result[:_embedded][:venues][0][:location][:latitude]%>,<%= @result[:_embedded][:venues][0][:location][:longitude]%>' target='blank'> map</a></p>
+     
+<%end%>
 <%= form_tag("/concerts", method: "post") do %>
   <%= label_tag("Add to: ") %>
   <select name="category" id="city_id">

@@ -5,18 +5,6 @@ class UsersController < ApplicationController
 		@concerts_upcomings = Concert.where(user_id: params[:id]).where(category: "up_coming")
 		@concerts_wishlist = Concert.where(user_id: params[:id]).where(category: "wish_list")
 		@concerts_pastevents = Concert.where(user_id: params[:id]).where(category: "past_events")
-
-		@concerts_upcomings.each do |u|
-		 	event_id = u.api_id
-		 	response = HTTParty.get("http://app.ticketmaster.com/discovery/v2/events/#{event_id}.json?apikey=#{ENV["API_KEY"]}", format: :plain)
-		    result = JSON.parse response, symbolize_names: true
-		    currentDate = Date.today
-	        concertDate = Date::strptime(result[:dates][:start][:localDate], "%Y-%m-%d")
-	        if currentDate > concertDate
-	            u.update(category: 'past_events')
-		        flash[:message] = 'this concert is in the past'		        
-	        end 	                
-	    end
     end
 	
 	def update

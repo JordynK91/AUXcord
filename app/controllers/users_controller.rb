@@ -1,5 +1,4 @@
-class UsersController < ApplicationController
-	
+class UsersController < ApplicationController	
 	def show
 		@user = User.find_by_id(params[:id])
 		@archives =Archive.where(user_id: params[:id])

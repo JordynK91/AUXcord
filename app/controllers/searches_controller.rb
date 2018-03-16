@@ -8,8 +8,6 @@ class SearchesController < ApplicationController
             puts params[:state_id]
             @results = JSON.parse response, symbolize_names: true
         end
-        response = HTTParty.get("http://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&stateCode=#{params[:state_id]}&startDateTime=#{params[:date]}&countryCode=US&sort=date,asc&apikey=#{ENV["API_KEY"]}", format: :plain)
-        @results = JSON.parse response, symbolize_names: true
     end
 
     def show

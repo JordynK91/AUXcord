@@ -2,6 +2,7 @@ class UsersController < ApplicationController
 	
 	def show
 		@user = User.find_by_id(params[:id])
+		@concerts =Concert.all
 		@concerts_upcomings = Concert.where(user_id: params[:id]).where(category: "up_coming")
 		@concerts_wishlist = Concert.where(user_id: params[:id]).where(category: "wish_list")
 		@concerts_pastevents = Concert.where(user_id: params[:id]).where(category: "past_events")

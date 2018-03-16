@@ -8,16 +8,16 @@ class ConcertsController < ApplicationController
       if concertAll.find_by_api_id(concert.api_id) != nil
           concertThis = concertAll.find_by_api_id(concert.api_id)
           concertThis.update(category: params[:category])
-          flash[:message] = "the concert move to #{params[:category]}"
+          flash[:message] = "the concert moved to #{params[:category]}"
           redirect_back(fallback_location: "/events/#{concert.api_id}")
       else
           concert.user_id = current_user.id 
           concert.category = params[:category]  
           if concert.save
-          	flash[:message] = 'the concert added'
+          	flash[:message] = 'This event has been added.'
     		    redirect_back(fallback_location: "/events/#{concert.api_id}")
           else
-            flash[:message] = 'not added'
+            flash[:message] = 'Error: event not added.'
     		    redirect_back(fallback_location: "/events/#{concert.api_id}")
           end    
 	    end			

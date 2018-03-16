@@ -27,7 +27,9 @@ class ConcertsController < ApplicationController
     concert = Concert.find_by_api_id(params[:api_id])
     archive = Archive.where(user_id: current_user.id).find_by_api_id(params[:api_id])
     concert.destroy
-    archive.destroy 
+    if archive != nil 
+      archive.destroy
+    end   
     flash[:message] = 'this concert has been deleted from your lists'
     redirect_to "/users/#{current_user.id}"
   end  

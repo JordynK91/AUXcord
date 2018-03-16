@@ -52,18 +52,25 @@
 	                <% @concerts_upcomings.each do |u|%>
 		 				<%@event_id = u.api_id%>
 		 			    <%response = HTTParty.get("http://app.ticketmaster.com/discovery/v2/events/#{@event_id}.json?apikey=#{ENV["API_KEY"]}", format: :plain)%>
-		                <% @result = JSON.parse response, symbolize_names: true%>	                
-		                <div><h2><%= @result[:name] %></h2></div>
-						<div><a href="/events/<%= @event_id %>"><img src="<%= @result[:images][5][:url] %>" width='300px'></a></div>
-						<p><div name='concertDate'><%= @result[:dates][:start][:localDate]%><div></p>
-						<p><%= @result[:dates][:start][:localTime]%></p>
-						<p>Venue: <%= @result[:_embedded][:venues][0][:name]%></p>
-	                
-	                    <!-- delete this concert from concert database-->
-	                    <%= form_tag(concert_path, method: "delete") do %>
-	                        <input type='hidden' name='api_id' value="<%=@event_id%>">
-	                        <%= submit_tag("Delete") %>
-                        <%end%>	
+		                <% @result = JSON.parse response, symbolize_names: true%>
+		                <%currentDate = Date.today%>
+	                    <%concertDate = Date::strptime(@result[:dates][:start][:localDate], "%Y-%m-%d")%>
+	                    <!-- Check the concert if it's passed the date-->
+	                    <%if currentDate > concertDate%>
+	                        <% u.update(category: 'past_events')%>		        
+	                    <%else%>	                
+			                <div><h2><%= @result[:name] %></h2></div>
+							<div><a href="/events/<%= @event_id %>"><img src="<%= @result[:images][5][:url] %>" width='300px'></a></div>
+							<p><div name='concertDate'><%= @result[:dates][:start][:localDate]%><div></p>
+							<p><%= @result[:dates][:start][:localTime]%></p>
+							<p>Venue: <%= @result[:_embedded][:venues][0][:name]%></p>
+							<!-- delete this concert from concert database-->
+	                        <%= form_tag(concert_path, method: "delete") do %>
+	                             <input type='hidden' name='api_id' value="<%=@event_id%>">
+	                            <%= submit_tag("Delete") %>
+                            <%end%>
+	                    <%end%>
+	                    	
                     <% end %>                  
                 <%end%>
 				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod

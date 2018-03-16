@@ -3,27 +3,16 @@
 <head>
   <title>AuxCord</title>
 </head>
-<div class="body">
+<body>
 
-  <body>
-    
-    <div class="precontainer">
-    <nav class="prenavbar">      
-      <ul>
-            <li><a href="/users/new/">Sign Up</a></li>
-            <li><a href="/login">Login</a></li>     
-      </ul>
-    </nav>
-  </div>
-</div>
+<div class="login">
 
 <% if flash[:alert] %>
          <%= flash[:alert] %> 
 <% end %>
 
+<h2><u>Log In:</u></h2>
 
-<h2>Log In:</h2>
-<div class="login">
     <%= form_tag(login_path) do  %>
     Username: <%= text_field_tag :username%></br>
     Password: <%= text_field_tag :password, "", type: "password" %></br>

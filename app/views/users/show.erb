@@ -1,16 +1,13 @@
-
+<div class="user-container">
 <div class="profile">
 
-
- <% if login_in? %>
-        <% if current_user.id == @user.id %>
 
 		<div class = 'headerphoto'>
 		<div class = 'header'>
 			Hey <%= @user.name %>.
 		</div>
 		<div class = 'subheader'>
-			Get Organized with AuxCord
+			Get Organized with AUXcord
 			</div>
 		</div>
 
@@ -33,6 +30,7 @@
   				  <a class="nav-link" id="user-tab" data-toggle="tab" href="#user" role="tab">Edit Your Profile</a>
   			</li>
 		</ul>
+</div>	
 
 <!-- tab content -->
 		<div class="tab-content">
@@ -41,10 +39,32 @@
  				<div class = 'upcoming-photo'>
  				<div class = 'upcoming-header'> What Do You Have on Deck? </div>
  				</div>
+                <h1>These are your upcoming shows:</h1>
+                <br/>
+                <br/>
+                
 
-
- 				These are your upcoming shows:
-
+                <!-- the upcoming concerts from concert database-->
+ 				<%if @concerts_upcomings[0] == nil %>
+ 				     <h1>You don't have any concerts listed here</h1> 	 			    
+	            <%else%>
+	                <% @concerts_upcomings.each do |u|%>
+		 				<%@event_id = u.api_id%>
+		 			    <%response = HTTParty.get("http://app.ticketmaster.com/discovery/v2/events/#{@event_id}.json?apikey=#{ENV["API_KEY"]}", format: :plain)%>
+		                <% @result = JSON.parse response, symbolize_names: true%>	                
+		                <div><h2><%= @result[:name] %></h2></div>
+						<div><a href="/events/<%= @event_id %>"><img src="<%= @result[:images][5][:url] %>" width='300px'></a></div>
+						<p><%= @result[:dates][:start][:localDate]%></p>
+						<p><%= @result[:dates][:start][:localTime]%></p>
+						<p>Venue: <%= @result[:_embedded][:venues][0][:name]%></p>
+	                
+	                    <!-- delete this concert from concert database-->
+	                    <%= form_tag(concert_path, method: "delete") do %>
+	                        <input type='hidden' name='api_id' value="<%=@event_id%>">
+	                        <%= submit_tag("Delete") %>
+                        <%end%>	
+                    <% end %>                  
+                <%end%>
 				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 				quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
@@ -57,6 +77,28 @@
   			<div class = 'wishlist-photo'>
  				<div class = 'wishlist-header'> Your Dreams Go Here</div>
  			</div>
+
+ 			<!-- the wishlist concerts from concert database-->
+			<%if @concerts_wishlist[0] == nil %>
+			    <h1>You don't have any concerts listed here</h1> 	 			    
+            <%else%>
+	 			<% @concerts_wishlist.each do |u|%>
+		 		    <%@event_id = u.api_id%>
+		 			<%response = HTTParty.get("http://app.ticketmaster.com/discovery/v2/events/#{@event_id}.json?apikey=#{ENV["API_KEY"]}", format: :plain)%>
+		            <% @result = JSON.parse response, symbolize_names: true%>	                
+		            <div><h2><%= @result[:name] %></h2></div>
+					<div><a href="/events/<%= @event_id %>"><img src="<%= @result[:images][5][:url] %>" width='300px'></a></div>
+					<p><%= @result[:dates][:start][:localDate]%></p>
+					<p><%= @result[:dates][:start][:localTime]%></p>
+					<p>Venue: <%= @result[:_embedded][:venues][0][:name]%></p>
+					<!-- delete this concert from concert database-->
+					<%= form_tag(concert_path, method: "delete") do %>
+                        <input type='hidden' name='api_id' value="<%=@event_id%>">
+                        <%= submit_tag("Delete") %>
+                    <% end %>
+
+	            <%end%>
+	        <%end%>    
   			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
   			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
   			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
@@ -69,6 +111,27 @@
 				<div class = 'history-photo'>
  				<div class = 'history-header'> Thanks for the Memories </div>
  			</div>
+
+ 			<!-- the past concerts from concert database-->
+			<%if @concerts_pastevents[0] == nil %>
+			    <h1>You don't have any concerts listed here</h1> 	 			    
+            <%else%>
+	 			<% @concerts_pastevents.each do |u|%>
+		 		    <%@event_id = u.api_id%>
+		 			<%response = HTTParty.get("http://app.ticketmaster.com/discovery/v2/events/#{@event_id}.json?apikey=#{ENV["API_KEY"]}", format: :plain)%>
+		            <% @result = JSON.parse response, symbolize_names: true%>	                
+		            <div><h2><%= @result[:name] %></h2></div>
+					<div><a href="/events/<%= @event_id %>"><img src="<%= @result[:images][5][:url] %>" width='300px'></a></div>
+					<p><%= @result[:dates][:start][:localDate]%></p>
+					<p><%= @result[:dates][:start][:localTime]%></p>
+					<p>Venue: <%= @result[:_embedded][:venues][0][:name]%></p>
+	                <!-- delete this concert from concert database-->
+	                <%= form_tag(concert_path, method: "delete") do %>
+                        <input type='hidden' name='api_id' value="<%=@event_id%>">
+                        <%= submit_tag("Delete") %>
+                    <% end %>
+                <%end%>    
+	        <%end%>    
 
 
   		your history
@@ -94,6 +157,8 @@
  			<div class = 'user-header'> Be Yourself </div>
  		</div>
 
+ 		<!-- the data from concert database-->
+
 			<%= form_for @user do |f| %>
 	          <div>Username:</div>
 	          	<div><%= f.text_field :username %></div>
@@ -117,8 +182,4 @@
 
 </div>	
 
-	<% end %>
 
-    <% else %>
-    <h1>Account info not valid. please login</h1>    
-	<% end %>

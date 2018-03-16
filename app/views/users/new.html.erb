@@ -5,34 +5,26 @@
 </head>
 <body>
 
-	<div class="precontainer">
-    <nav class="prenavbar">      
-      <ul>
-            <li><a href="/users/new/">Sign Up</a></li>
-            <li><a href="/login">Login</a></li>     
-      </ul>
-    </nav>
-  </div>
-</div>
-
-	<div><h1>Make An Account</h1></div>
+<div class="createAccount">
+	<div><h1>Sign Up for an Account</h1></div></br>
 	        <%= form_for @user do |f| %>
 	          <div>Username:</div>
 	          <div><%= f.text_field :username %></div>
 	          <div>Email:</div>
 	          <div><%= f.text_field :email %></div>
 	          <div>Password:</div>
-	          <div><%= f.text_field :password %></div>
+	          <div><%= f.password_field :password %></div>
 	          <div>Bio:</div>
 	          <div><%= f.text_area :bio %></div>
-	          <div>Location:</div>
+	          <div>Zip Code:</div>
 	          <div><%= f.text_field :location %></div>
-	          <div>Name:</div>
+	          <div>First Name:</div>
 	          <div><%= f.text_field :name %></div>
-	          <div>favorites:</div>
-	          <div><%= f.text_field :faves %></div>
+	          <div>Favorite Bands:</div>
+	          <div><%= f.text_field :faves %></div></br>
 	          <%= f.submit "Save"%>
 	          <% end %>
+</div>   
 
 </body>
 </html>

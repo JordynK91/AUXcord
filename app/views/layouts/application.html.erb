@@ -1,42 +1,52 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>AuxCord</title>
-    <%= csrf_meta_tags %>
-
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <title>AUXcord</title>
+  <%= csrf_meta_tags %>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  
     <%= favicon_link_tag 'favicon.ico' %>
   </head>
 
-<div class="body">
-  <body>
-    <div class="container">
-    <nav class="navbar">      
-      <ul>
-          <% if login_in? %> 
-             <nav class="navbar navbar-default">
-               <div class="container-fluid">
-               <div class="navbar-header">
-                 <div class="navbar-brand" >AuxCord</div>
-             <ul class = 'nav navbar-nav'>
-            <li class = 'active'><a href="/search">Search</a></li>
-            <li><a href="/users/<%=current_user.id%>">Profile</a></li>
-            <li><%= link_to'Sign Out', logout_path, method: :destroy %></li>
-            </div>
-          </div>
-          </ul>
-           </nav>
-          <% else %>
-            <% link_to root_path %>
-          <% end %>              
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/">AUXcord</a>
+    </div>
+    <% if login_in? %> 
+      <ul class="nav navbar-nav navbar-right"> 
+        <li><a href="/search">Search</a></li>
+        <li><a href="/users">Profile</a></li>
+        <li><%= link_to'Sign Out', logout_path, method: :destroy %></li>
       </ul>
-    </nav>
+          <% else %>
+      <ul class="nav navbar-nav navbar-right"> 
+      <li><a href="/users/new" class="btn btn-default btn-lg"><span class="glyphicon"></span>Sign Up</a></li>
+      <li><a href="/login" class="btn btn-default btn-lg"><span class="glyphicon"></span>Login</a></li>
+          <% end %>        
+      </ul>
+    </div>
   </div>
+</nav>
+   
+</div>
 </div>
   	<% if flash[:message] %>
       <%= flash[:message] %>
     <% end%>
     <%= yield %>
+
+<!-- Footer -->
+<footer class="container-fluid bg-4 text-center">
+ <p>Copyright © <%= Time.current.year %> AUXcord</p> 
+</footer>
   </body>
 </html>

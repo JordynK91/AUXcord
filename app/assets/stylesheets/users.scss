@@ -1,163 +1,148 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
-
 .profile {
-	padding-left: 20px;	
+    padding-left: 20px;
 }
 
 .info {
-	padding: 20px;	
+    padding: 20px;
 }
 
 .field {
-	padding: 5px;
+    padding: 5px;
 }
 
 .submit {
-	margin-bottom: 20px;
+    margin-bottom: 20px;
 }
 
 .nav-tabs {
-	background-color: black;
+    background-color: black;
 }
-
 
 .tab-content {
-	text-align: center;
+    text-align: center;
 }
 
-.userInfo{
-	text-align:center;
+.userInfo {
+    text-align: center;
 }
 
-.headerphoto{
-background-image: url("photo1.jpeg");
-height: 800px;
-width: 100%;
-margin: 0 auto;
-background-position: center;
-background-repeat: no-repeat;
-background-size: cover;}
-
-
-.header{
-font-size: 200px;
-color: black;
-text-align: center;
-text-shadow: 2px 2px white;
+.headerphoto {
+    background-image: url("photo1.jpeg");
+    height: 800px;
+    width: 100%;
+    margin: 0 auto;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
-.subheader{
-	border: solid;
-	background-color: black;
-	width: 80%;
-	font-size: 80px;
-	color: white;
-	position: relative;
-	top: 300px;
-	left: 2%;
-	text-align: center;
+.header {
+    font-size: 200px;
+    color: black;
+    text-align: center;
+    text-shadow: 2px 2px white;
 }
 
-.delete {color: red;
-		font-size: 20px;}
-
-
-.upcoming-photo{
-background-image: url("photo_upcoming.jpeg");
-height: 400px;
-width: 100%;
-background-position: center;
-background-repeat: no-repeat;
-background-size: cover;
-
+.subheader {
+    border: solid;
+    background-color: black;
+    width: 80%;
+    font-size: 80px;
+    color: white;
+    position: relative;
+    top: 300px;
+    left: 2%;
+    text-align: center;
 }
 
-.upcoming-header{
-	font-size: 80px;
-	color: white;
-	position: relative;
-	top: 20%;
-
+.delete {
+    color: red;
+    font-size: 20px;
 }
 
-
-
-.wishlist-photo{
-background-image: url("photo_wishlist.jpeg");
-height: 400px;
-width: 100%;
-background-position: center;
-background-repeat: no-repeat;
-background-size: cover;
-
+.upcoming-photo {
+    background-image: url("photo_upcoming.jpeg");
+    height: 400px;
+    width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
-
-.wishlist-header{
-	font-size: 80px;
-	color: white;
-	position: relative;
-	top: 20%;
-
+.upcoming-header {
+    font-size: 80px;
+    color: white;
+    position: relative;
+    top: 20%;
 }
 
-
-.history-photo{
-background-image: url("photo_history.jpeg");
-height: 400px;
-width: 100%;
-background-position: center;
-background-repeat: no-repeat;
-background-size: cover;
-
+.wishlist-photo {
+    background-image: url("photo_wishlist.jpeg");
+    height: 400px;
+    width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
-.history-header{
-	font-size: 80px;
-	color: white;
-	position: relative;
-	top: 20%;
-
+.wishlist-header {
+    font-size: 80px;
+    color: white;
+    position: relative;
+    top: 20%;
 }
 
-
-.achievments-photo{
-background-image: url("photo-achieve.png");
-height: 400px;
-width: 100%;
-background-position: center;
-background-repeat: no-repeat;
-background-size: cover;
-
+.history-photo {
+    background-image: url("photo_history.jpeg");
+    height: 400px;
+    width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
-.achivements-header{
-	font-size: 80px;
-	color: white;
-	position: relative;
-	top: 20%;
-
+.history-header {
+    font-size: 80px;
+    color: white;
+    position: relative;
+    top: 20%;
 }
 
-.user-photo{
-background-image: url("photo_edit");
-height: 400px;
-width: 100%;
-background-position: center;
-background-repeat: no-repeat;
-background-size: cover;
-
+.achievments-photo {
+    background-image: url("photo-achieve.png");
+    height: 400px;
+    width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
-.user-header{
-	font-size: 80px;
-	color: white;
-	position: relative;
-	top: 20%;
-
+.achivements-header {
+    font-size: 80px;
+    color: white;
+    position: relative;
+    top: 20%;
 }
 
+.user-photo {
+    background-image: url("photo_edit");
+    height: 400px;
+    width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 
+.user-header {
+    font-size: 80px;
+    color: white;
+    position: relative;
+    top: 20%;
+}
+
+.createAccount {
+    padding: 20px;
+}

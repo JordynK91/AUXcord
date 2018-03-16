@@ -1,24 +1,46 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>AuxCord</title>
-</head>
+	<title>AUXcord</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
 <body>
 
-    <div class="precontainer">
-    <nav class="prenavbar">      
-      <ul>
-            <li><a href="/users/new/">Sign Up</a></li>
-            <li><a href="/login">Login</a></li>     
-      </ul>
-    </nav>
+<!-- First Container -->
+<div class="container-fluid bg-1 text-center">
+  <h3 class="margin"></h3>
+  <img src="auxcordlogo.png" class="img-responsive img-circle margin" style="display:inline" alt="AuxCordLogo" width="250" height="250">
+  <h3 class="title1">What is AUXcord?</h3>
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+</div>
+
+<!-- Second Container -->
+<div class="container-fluid bg-2 text-center">
+  <h3 class="margin">How does it work?</h3></br>
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+</div>
+
+<!-- Third Container (Grid) -->
+<div class="container-fluid bg-3 text-center">    
+  <h3 class="margin">How do I get started?</h3><br>
+  <div class="row">
+    <div class="col-sm-4">
+      <p>Signup for an account!</p>
+      <img src="notes.png" class="img-responsive margin" style="width:50%" alt="Image" align="middle">
+    </div>
+    <div class="col-sm-4"> 
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      <img src="picture2.jpg" class="img-responsive margin" style="width:100%" alt="Image">
+    </div>
+    <div class="col-sm-4"> 
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      <img src="picture3.jpg" class="img-responsive margin" style="width:100%" alt="Image">
+    </div>
   </div>
+</div>
 
-<h1>AuxCord</h1>
-
-<h2>Discover and share your favorite live music events</h2>
-
-<div class="bkg1"></div>
 
 <% if flash[:alert] %>
          <%= flash[:alert] %> 

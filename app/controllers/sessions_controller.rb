@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
 			redirect_to "/users/#{@user.id}/"
 		else 
 			
-			redirect_to "/"
+			redirect_to "/login"
 			flash[:alert] = "Account Info Invalid. Please Try Again." 
 		end
 	end

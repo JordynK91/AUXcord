@@ -152,6 +152,17 @@
 .createAccount {
     padding: 20px;
 }
+.badge{ height: 500px;
+        width: 500px;
+        display: in-line;
+}
+
+#badge1 {
+    background-image: url("badge1");    
+       background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        border-radius: 50%;
 
 .upcoming {
     padding: 20px;  

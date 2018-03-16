@@ -140,24 +140,39 @@
                     <% end %>
                 <%end%>    
 	        <%end%>    
-
-
-  		your history
-	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
   	</div>
 
 	<div class="tab-pane" id="achievments" role="tabpanel">
 			<div class = 'achievments-photo'> 
- 			<div class = 'achivements-header'> Baby, You've Earned It</div>
- 		</div>
- 				your achievements
-  			</div>
+ 				<div class = 'achivements-header'> Baby, You've Earned It</div>
+ 			</div>
 
+ 			<!-- achivements determined by archive data -->
+ 			<% if @archives.length >= 1 %>
+ 				<div class = 'badge' id = 'badge1'> </div>
+ 			<% end %>
+
+ 			<% if @archives.length >= 5 %>
+ 				<div> Roadie: 5 concerts attended </div>
+ 			<% end %>
+
+ 			<% if @archives.length >= 10 %>
+ 				<div> MC: 10 concerts attended </div>
+ 			<% end %>
+
+			<% if @archives.length >= 25 %>
+ 				<div> Shredder: 25 concerts attended </div>
+ 			<% end %>
+
+ 			<% if @archives.length >= 50  %>
+ 				<div> Rock Star: 50 concerts attended</div>
+ 			<% end %>
+
+ 			<% if @archives.length >= 100  %>
+ 				<div> Legendary: 100 concerts attended! </div>
+ 			<% end %>
+
+  		</div> 
 
 		<div class="tab-pane" id="user" role="tabpanel">
 
@@ -165,8 +180,7 @@
  			<div class = 'user-header'> Be Yourself </div>
  		</div>
 
- 		<!-- the data from concert database-->
-
+ 
 			<%= form_for @user do |f| %>
 	          <div>Username:</div>
 	          	<div><%= f.text_field :username %></div>

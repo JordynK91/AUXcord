@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   get '/search/:id', to: 'searches#index'
   get '/events/:id', to: 'searches#show'
 
+
+
 resources :users
 resources :concerts
 

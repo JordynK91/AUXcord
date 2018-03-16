@@ -30,19 +30,19 @@
   				  <a class="nav-link" id="user-tab" data-toggle="tab" href="#user" role="tab">Edit Your Profile</a>
   			</li>
 		</ul>
-</div>	
+
 
 <!-- tab content -->
 		<div class="tab-content">
- 
+
  			<div class="tab-pane active" id="upcoming" role="tabpanel">
  				<div class = 'upcoming-photo'>
- 				<div class = 'upcoming-header'> What Do You Have on Deck? </div>
+ 					<div class = 'upcoming-header'> What Do You Have on Deck? </div>
  				</div>
                 <h1>These are your upcoming shows:</h1>
                 <br/>
                 <br/>
-             
+
                 <!-- the upcoming concerts from concert database-->
  				<%if @concerts_upcomings[0] == nil %>
  				     <h1>You don't have any concerts listed here</h1> 	 			    
@@ -59,7 +59,7 @@
 	                    <%else%>	                
 			                <div><h2><%= @result[:name] %></h2></div>
 							<div><a href="/events/<%= @event_id %>"><img src="<%= @result[:images][5][:url] %>" width='300px'></a></div>
-							<p><div name='concertDate'><%= @result[:dates][:start][:localDate]%><div></p>
+							<p><div name='concertDate'><%= @result[:dates][:start][:localDate]%></div></p>
 							<p><%= @result[:dates][:start][:localTime]%></p>
 							<p>Venue: <%= @result[:_embedded][:venues][0][:name]%></p>
 							<!-- delete this concert from concert database-->
@@ -71,12 +71,6 @@
 	                    	
                     <% end %>                  
                 <%end%>
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-				quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-				consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-				cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-				roident, sunt in culpa qui officia deserunt mollit anim id est laborum.
   			</div>
 
   		<div class="tab-pane" id="wishlist" role="tabpanel">
@@ -105,12 +99,6 @@
 
 	            <%end%>
 	        <%end%>    
-  			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-  			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-  			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-  			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-  			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-  			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
   		</div>
   	
   		<div class="tab-pane" id="history" role="tabpanel">
@@ -211,8 +199,8 @@
 	          <%= f.submit "Save"%>
           <% end %>
 
- <div><%= link_to('Delete Your Account', user_path, method: :delete, class: 'delete')%></div>
-
+ 	<div><%= link_to('Delete Your Account', user_path, method: :delete, class: 'delete')%></div>
+</div>
 
 </div>	
 

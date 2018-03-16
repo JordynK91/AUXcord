@@ -23,6 +23,13 @@ class ConcertsController < ApplicationController
 	    end			
 	end
 
+  def destroy
+    concert = Concert.find_by_api_id(params[:api_id])
+    concert.destroy
+    flash[:message] = 'this concert has been deleted from your lists'
+    redirect_to "/users/#{current_user.id}"
+  end  
+
 
 private
   def concert_params

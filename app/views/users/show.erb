@@ -127,7 +127,11 @@
 	 			<% @concerts_pastevents.each do |u|%>
 		 		    <%@event_id = u.api_id%>
 		 			<%response = HTTParty.get("http://app.ticketmaster.com/discovery/v2/events/#{@event_id}.json?apikey=#{ENV["API_KEY"]}", format: :plain)%>
-		            <% @result = JSON.parse response, symbolize_names: true%>	                
+		            <% @result = JSON.parse response, symbolize_names: true%>
+		            <% if Archive.find_by_api_id(@event_id)!= nil%>
+		            <% else%>	
+			            <% Archive.create(api_id: @event_id, user_id: current_user.id, name: @result[:name], img_url: @result[:images][5][:url], date: @result[:dates][:start][:localDate], time: @result[:dates][:start][:localTime], venue: @result[:_embedded][:venues][0][:name], info: @result[:info], category:@result[:classifications][0][:genre][:name] )%>
+			        <% end %>                   
 		            <div><h2><%= @result[:name] %></h2></div>
 					<div><a href="/events/<%= @event_id %>"><img src="<%= @result[:images][5][:url] %>" width='300px'></a></div>
 					<p><%= @result[:dates][:start][:localDate]%></p>
@@ -144,6 +148,16 @@
 
 	<div class="tab-pane" id="achievments" role="tabpanel">
 			<div class = 'achievments-photo'> 
+ 			<div class = 'achivements-header'> Baby, You've Earned It</div>
+ 		</div>
+ 				your achievements
+        <br/>
+ 		<% @archives.each do |a| %>
+ 		<%= a.name %><br/>
+ 		<%= a.date %><br/>
+ 		<%= a.venue%><br/>
+ 		<%end%>
+  	</div>
  				<div class = 'achivements-header'> Baby, You've Earned It</div>
  			</div>
 

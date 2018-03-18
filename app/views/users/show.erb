@@ -1,18 +1,18 @@
-<div class="user-container">
+
 <div class="profile">
 
 
-		<div class = 'headerphoto'>
+	<div class = 'headerphoto'>
 		<div class = 'header'>
 			Hey <%= @user.name %>.
 		</div>
 		<div class = 'subheader'>
 			Get Organized with AUXcord
-			</div>
 		</div>
+	</div>
 
 <!-- Tabs -->
-		<div class="navtabs">
+	<div class="navtabs">
 		<ul class="nav nav-tabs" id="myTab" role="tablist">
  			 <li class="nav-item">
    				 <a class="nav-link active" id="upcoming-tab" data-toggle="tab" href="#upcoming" role="tab"> Upcoming Events</a>
@@ -31,16 +31,16 @@
   			</li>
 		</ul>
 
-</div>	
+	</div>	
 </div>
 
 <!-- tab content -->
-		<div class="tab-content">
+<div class="tab-content">
 
- 			<div class="tab-pane active" id="upcoming" role="tabpanel">
- 				<div class = 'upcoming-photo'>
- 					<div class = 'upcoming-header'> What Do You Have on Deck? </div>
- 				</div>
+ 	<div class="tab-pane active" id="upcoming" role="tabpanel">
+ 		<div class = 'upcoming-photo'>
+ 			<div class = 'upcoming-header'> What Do You Have on Deck? </div>
+ 		</div>
                 <h1>These are your upcoming shows:</h1>
                 <br/>
                 <br/>
@@ -75,10 +75,10 @@
                 <%end%>
   			</div>
 
-  		<div class="tab-pane" id="wishlist" role="tabpanel">
-  			<div class = 'wishlist-photo'>
- 				<div class = 'wishlist-header'> Your Dreams Go Here</div>
- 			</div>
+<div class="tab-pane" id="wishlist" role="tabpanel">
+  	<div class = 'wishlist-photo'>
+ 		<div class = 'wishlist-header'> Your Dreams Go Here</div>
+ 	</div>
 
  			<!-- the wishlist concerts from concert database-->
 			<%if @concerts_wishlist[0] == nil %>
@@ -101,12 +101,12 @@
 
 	            <%end%>
 	        <%end%>    
-  		</div>
+ </div>
   	
-  		<div class="tab-pane" id="history" role="tabpanel">
-				<div class = 'history-photo'>
- 				<div class = 'history-header'> Thanks for the Memories </div>
- 			</div>
+<div class="tab-pane" id="history" role="tabpanel">
+	<div class = 'history-photo'>
+ 		<div class = 'history-header'> Thanks for the Memories </div>
+ 	</div>
 
  			<!-- the past concerts from concert database-->
 			<%if @concerts_pastevents[0] == nil %>
@@ -132,17 +132,13 @@
                     <% end %>
                 <%end%>    
 	        <%end%>    
-  	</div>
+ </div>
 
-	<div class="tab-pane" id="achievments" role="tabpanel">
-			<div class = 'achievments-photo'> 
+<div class="tab-pane" id="achievments" role="tabpanel">
+		<div class = 'achievments-photo'> 
  			<div class = 'achivements-header'> Baby, You've Earned It</div>
  		</div>
- 				your achievements
-
-  
- 				<div class = 'achivements-header'> Baby, You've Earned It</div>
- 			</div>
+ 			
 
  			<!-- achivements determined by archive data -->
  			<% if @archives.length >= 1 %>
@@ -173,11 +169,10 @@
 
 		<div class="tab-pane" id="user" role="tabpanel">
 
-		<div class = 'user-photo'>
- 			<div class = 'user-header'> Be Yourself </div>
- 		</div>
+			<div class = 'user-photo'>
+ 				<div class = 'user-header'> Be Yourself </div>
+ 			</div>
 
- 
 			<%= form_for @user do |f| %>
 	          <div>Username:</div>
 	          	<div><%= f.text_field :username %></div>
@@ -200,5 +195,5 @@
 </div>
 
 </div>	
-
+</div>s
 

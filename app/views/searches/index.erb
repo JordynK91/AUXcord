@@ -2,8 +2,10 @@
 
 <%= form_tag search_path do %>
     <%= text_field_tag :keyword, nil, :placeholder => "Artist or Venue" %>
+    <div class="stateSelect">
     <%= select_tag(:state_id, options_for_select(
-        [["Alabama","AL"],
+        [["Where",""],
+        ["Alabama","AL"],
         ["Alaska","AK"],
         ["Arizona","AZ"],
         ["Arkansas","AR"],
@@ -55,10 +57,23 @@
         ["Wisconsin","WI"],
         ["Wyoming","WY"]
     ])) %>
+    </div>
     <%= hidden_field_tag :date  %>
+    <%= hidden_field_tag :latlon  %>
    <%= submit_tag "Search" %>
   <% end %>
 <br/>
+
+<%#
+      /)-/)
+     (* ••\
+     / (*  *)
+    /o / uu
+   / O/
+  /o /
+   0/
+   /
+#%>
 
 
 <% if @results %>
@@ -72,9 +87,14 @@
   <% end %>
   <% else %>
 
-    <h1>Opps, we can't find anything for you</h1>
+    <h1>Oops, we can't find anything for you</h1>
 <% end %>  
 
 </div>
 
 <% end %>
+
+
+<script>
+
+</script>

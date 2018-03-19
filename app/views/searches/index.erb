@@ -1,10 +1,9 @@
 <div class="search">
-
 <%= form_tag search_path do %>
     <%= text_field_tag :keyword, nil, :placeholder => "Artist or Venue" %>
     <div class="stateSelect">
     <%= select_tag(:state_id, options_for_select(
-        [["Where",""],
+        [["Pick a state",""],
         ["Alabama","AL"],
         ["Alaska","AK"],
         ["Arizona","AZ"],

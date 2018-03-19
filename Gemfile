@@ -59,3 +59,7 @@ gem 'jquery-rails'
 gem 'bootstrap', '~> 4.0.0'
 #makes page shareable to social media
 gem 'shareable', :git => "https://github.com/simon0191/shareable"
+
+#google calendar 
+gem 'google-api-client', require: 'google/apis/calendar_v3'
+

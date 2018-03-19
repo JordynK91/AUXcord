@@ -28,22 +28,36 @@ class UsersController < ApplicationController
 	    else 
 	      flash[:alert] = "Account Info Invalid. Please Try Again." 
 	    end
-  end
+	end
 
-  def destroy 
-  	 @user = User.find(current_user.id)
-    if @user.destroy
-    redirect_to '/users/new'
-  end
+	def destroy 
+	  	 @user = User.find(current_user.id)
+	    if @user.destroy
+	    redirect_to '/users/new'
+	end
 
-end
+	def redirect
+	       client = Signet::OAuth2::Client.new(client_options)
+	       redirect_to client.authorization_uri.to_s     
+	end
 
+  	private
+	    def user_params
+	    	params.require(:user).permit(:username, :password, :location, :name, :email, :faves, :bio,
+	:achievements)
+	    end 
 
-	private
-    def user_params
-    	params.require(:user).permit(:username, :password, :location, :name, :email, :faves, :bio,
-:achievements)
-    end 
+	    def client_options
+	    {
+	      client_id: Rails.application.secrets.google_client_id,
+	      client_secret: Rails.application.secrets.google_client_secret,
+	      authorization_uri: 'https://accounts.google.com/o/oauth2/auth',
+	      token_credential_uri: 'https://accounts.google.com/o/oauth2/token',
+	      scope: Google::Apis::CalendarV3::AUTH_CALENDAR,
+	      redirect_uri: '/callback'
+	    }
+	    end
+    end
 
 end
 

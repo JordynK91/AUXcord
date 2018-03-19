@@ -4,8 +4,8 @@ Rails.application.routes.draw do
   post '/search', to: 'searches#search'
   get '/search/:id', to: 'searches#index'
   get '/events/:id', to: 'searches#show'
-
-
+  get '/redirect', to: 'users#redirect', as: 'redirect'
+  get '/callback', to: 'users#callback', as: 'callback'
 
 resources :users
 resources :concerts

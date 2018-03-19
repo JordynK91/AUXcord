@@ -69,6 +69,17 @@
 	                             <input type='hidden' name='api_id' value="<%=@event_id%>">
 	                            <%= submit_tag("Delete") %>
                             <%end%>
+                           <form action="<%= redirect_path %>" method="get" >
+                           	   <%= submit_tag "Add", :name => nil%>
+                           	
+                           </form> 
+
+                            <%= form_tag(redirect_path, method: "get") do %>
+	                      	
+							 <%= submit_tag "whatever" %>
+                            <%end%>
+
+                           
 	                    <%end%>
 	                    	
                     <% end %>                  
@@ -173,27 +184,27 @@
  				<div class = 'user-header'> Be Yourself </div>
  			</div>
 
-			<%= form_for @user do |f| %>
-	          <div>Username:</div>
-	          	<div><%= f.text_field :username %></div>
+			<%#= form_for @user do |f| %>
+	          <!-- <div>Username:</div>
+	          	<div><%#= f.text_field :username %></div>
 	          <div>Email:</div>
-	          	<div><%= f.text_field :email %></div>
+	          	<div><%#= f.text_field :email %></div>
 	          <div>Password:</div>
-	         	 <div><%= f.text_field :password %></div>
+	         	 <div><%#= f.text_field :password %></div>
 	          <div>Bio:</div>
-	         	 <div><%= f.text_area :bio %></div>
+	         	 <div><%#= f.text_area :bio %></div>
 	          <div>Location:</div>
-	         	 <div><%= f.text_field :location %></div>
+	         	 <div><%#= f.text_field :location %></div>
 	          <div>Name:</div>
-	         	 <div><%= f.text_field :name %></div>
+	         	 <div><%#= f.text_field :name %></div>
 	          <div>favorites:</div>
-	          	<div><%= f.text_field :faves %></div>
-	          <%= f.submit "Save"%>
-          <% end %>
+	          	<div><%#= f.text_field :faves %></div> -->
+	          <%#= f.submit "Save"%>
+          <%# end %>
 
  	<div><%= link_to('Delete Your Account', user_path, method: :delete, class: 'delete')%></div>
 </div>
 
 </div>	
-</div>s
+</div>
 

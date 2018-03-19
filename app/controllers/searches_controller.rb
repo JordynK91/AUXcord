@@ -1,5 +1,8 @@
 class SearchesController < ApplicationController
     def index
+    if current_user == nil 
+            redirect_to root_path
+    else                   
         if params[:id]
             if params[:state_id] != ""
                 puts "first ran"
@@ -15,6 +18,8 @@ class SearchesController < ApplicationController
         else
             @results = nil
         end
+    end    
+   
     end
 
 
@@ -26,8 +31,10 @@ class SearchesController < ApplicationController
         @result = JSON.parse response, symbolize_names: true
     end	
 
-    def search 
-        redirect_to controller: 'searches', action: 'index', id: params[:keyword], date: params[:date], state_id: params[:state_id], latlon: params[:latlon]
+    def search
+        
+        
+            redirect_to controller: 'searches', action: 'index', id: params[:keyword], date: params[:date], state_id: params[:state_id], latlon: params[:latlon]
     end
 
 end

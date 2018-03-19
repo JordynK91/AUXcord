@@ -7,9 +7,11 @@ Rails.application.routes.draw do
 
 
 
+
 resources :users
 resources :concerts
 
+post '/concerts', to: 'concerts#update'
 
 
 root to: 'home#index'

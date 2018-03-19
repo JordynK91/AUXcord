@@ -130,6 +130,14 @@
 					<p><%= @result[:dates][:start][:localDate]%></p>
 					<p><%= @result[:dates][:start][:localTime]%></p>
 					<p>Venue: <%= @result[:_embedded][:venues][0][:name]%></p>
+
+					<!-- add notes about the concert you attended -->	
+					<%= form_for u do |f| %>
+	          		<div>Notes</div>
+	          		<div><%= f.text_area :notes %></div>
+	          	 	<%= f.submit "Add Notes"%>
+	          		<% end %>
+
 	                <!-- delete this concert from concert database-->
 	                <%= form_tag(concert_path, method: "delete") do %>
                         <input type='hidden' name='api_id' value="<%=@event_id%>">

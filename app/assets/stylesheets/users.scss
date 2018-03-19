@@ -158,22 +158,29 @@
 .createAccount {
     padding: 20px;
 }
-.badge{ height: 500px;
-        width: 500px;
-        display: in-line;
+
+.awardheader {
+    font-size: 30px;
+    font-style: bold;
 }
 
-#badge1 {
-    background-image: url("badge1");    
-       background-position: center;
+
+.award{ height: 200px;
+        width: 200px;
+        display: in-line;
+        background-image: url('award');
+        background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
-        border-radius: 50%;
-}        
+}
+
+
 
 .user-container {
     padding: 40px;  
 }
+
+.grey {opacity: .2;}
 
 * hr {
     border: 0;

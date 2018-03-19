@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 resources :users
 resources :concerts
 
-post '/concerts', to: 'concerts#update'
+post '/users', to: 'concerts#update'
 
 
 root to: 'home#index'

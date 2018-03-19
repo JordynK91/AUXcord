@@ -13,9 +13,9 @@ $(document).on('turbolinks:load', function(){
     dateField.value= startDateTime;
     stateSelect.style.display = "none";
 
-    changeLocation.addEventListener("click", hideStuff);
-
-    function hideStuff(){
+    //shows states when user selects "change location"
+    changeLocation.addEventListener("click", showStates);
+    function showStates(){
         locationField.value = "";
         stateSelect.style.display = "block";
         changeLocation.style.display = "none";

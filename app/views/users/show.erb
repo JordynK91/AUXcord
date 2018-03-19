@@ -41,13 +41,13 @@
  		<div class = 'upcoming-photo'>
  			<div class = 'upcoming-header'> What Do You Have on Deck? </div>
  		</div>
-                <h1>These are your upcoming shows:</h1>
-                <br/>
+ 		<div class="user-container">
+                <h1><u>These are your upcoming shows:</u></h1>
                 <br/>
 
                 <!-- the upcoming concerts from concert database-->
  				<%if @concerts_upcomings[0] == nil %>
- 				     <h1>You don't have any concerts listed here</h1> 	 			    
+ 				     <h1>You don't have any shows listed here.</h1> 	 			    
 	            <%else%>
 	                <% @concerts_upcomings.each do |u|%>
 		 				<%@event_id = u.api_id%>
@@ -67,7 +67,7 @@
 							<!-- delete this concert from concert database-->
 	                        <%= form_tag(concert_path, method: "delete") do %>
 	                             <input type='hidden' name='api_id' value="<%=@event_id%>">
-	                            <%= submit_tag("Delete") %>
+	                            <%= submit_tag("Delete") %></br></br><hr></br>	
                             <%end%>
                            <form action="<%= redirect_path %>" method="get" >
                            	   <%= submit_tag "Add", :name => nil%>
@@ -81,19 +81,21 @@
 
                            
 	                    <%end%>
-	                    	
                     <% end %>                  
                 <%end%>
   			</div>
+  		</div>
 
 <div class="tab-pane" id="wishlist" role="tabpanel">
   	<div class = 'wishlist-photo'>
  		<div class = 'wishlist-header'> Your Dreams Go Here</div>
  	</div>
-
+ 			<div class="user-container">
+ 			<h1><u>These are shows you want to see:</u></h1>
+            <br/>
  			<!-- the wishlist concerts from concert database-->
 			<%if @concerts_wishlist[0] == nil %>
-			    <h1>You don't have any concerts listed here</h1> 	 			    
+			    <div><h1>You don't have any shows listed here.</h1></div>			    
             <%else%>
 	 			<% @concerts_wishlist.each do |u|%>
 		 		    <%@event_id = u.api_id%>
@@ -107,12 +109,12 @@
 					<!-- delete this concert from concert database-->
 					<%= form_tag(concert_path, method: "delete") do %>
                         <input type='hidden' name='api_id' value="<%=@event_id%>">
-                        <%= submit_tag("Delete") %>
+                        <%= submit_tag("Delete") %></br></br><hr></br>	
                     <% end %>
-
 	            <%end%>
 	        <%end%>    
- </div>
+	</div>
+</div>
   	
 <div class="tab-pane" id="history" role="tabpanel">
 	<div class = 'history-photo'>
@@ -120,8 +122,11 @@
  	</div>
 
  			<!-- the past concerts from concert database-->
+ 			<div class="user-container">
+ 			<h1><u>These are shows you've seen:</u></h1>
+            <br/>
 			<%if @concerts_pastevents[0] == nil %>
-			    <h1>You don't have any concerts listed here</h1> 	 			    
+			    <h1>You don't have any shows listed here.</h1> 	 			    
             <%else%>
 	 			<% @concerts_pastevents.each do |u|%>
 		 		    <%@event_id = u.api_id%>
@@ -136,22 +141,31 @@
 					<p><%= @result[:dates][:start][:localDate]%></p>
 					<p><%= @result[:dates][:start][:localTime]%></p>
 					<p>Venue: <%= @result[:_embedded][:venues][0][:name]%></p>
+
+					<!-- add notes about the concert you attended -->	
+					<%= form_for u do |f| %>
+	          		<div>Notes</div>
+	          		<div><%= f.text_area :notes %></div>
+	          	 	<%= f.submit "Add Notes"%>
+	          		<% end %>
+
 	                <!-- delete this concert from concert database-->
 	                <%= form_tag(concert_path, method: "delete") do %>
                         <input type='hidden' name='api_id' value="<%=@event_id%>">
-                        <%= submit_tag("Delete") %>
+                        <%= submit_tag("Delete") %></br></br><hr></br>	
                     <% end %>
                 <%end%>    
 	        <%end%>    
  </div>
+</div>	
 
 <div class="tab-pane" id="achievments" role="tabpanel">
 		<div class = 'achievments-photo'> 
  			<div class = 'achivements-header'> Baby, You've Earned It</div>
  		</div>
  			
-
- 			<!-- achivements determined by archive data -->
+			<div class="user-container">
+ 			<!-- achivements determined by archive data -->    
  			<% if @archives.length >= 1 %>
  				<div class = 'badge' id = 'badge1'> </div>
  			<% end %>
@@ -175,7 +189,7 @@
  			<% if @archives.length >= 100  %>
  				<div> Legendary: 100 concerts attended! </div>
  			<% end %>
-
+			</div>
   		</div> 
 
 		<div class="tab-pane" id="user" role="tabpanel">
@@ -198,9 +212,11 @@
 	          <div>Name:</div>
 	         	 <div><%#= f.text_field :name %></div>
 	          <div>favorites:</div>
+
 	          	<div><%#= f.text_field :faves %></div> -->
 	          <%#= f.submit "Save"%>
           <%# end %>
+
 
  	<div><%= link_to('Delete Your Account', user_path, method: :delete, class: 'delete')%></div>
 </div>

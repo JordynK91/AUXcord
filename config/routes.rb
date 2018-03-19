@@ -7,9 +7,11 @@ Rails.application.routes.draw do
   get '/redirect', to: 'users#redirect', as: 'redirect'
   get '/callback', to: 'users#callback', as: 'callback'
 
+
 resources :users
 resources :concerts
 
+post '/concerts', to: 'concerts#update'
 
 
 root to: 'home#index'

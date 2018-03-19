@@ -34,10 +34,15 @@ class ConcertsController < ApplicationController
     redirect_to "/users/#{current_user.id}"
   end  
 
+  def update
+    concert = Concert.find_by_api_id(params[:api_id])
+    concert.update(concert_params)
+      redirect_to "/users/#{current_user.id}"
+  end
 
 private
   def concert_params
-    params.require(:concert).permit(:api_id, :category, :user_id)
+    params.require(:concert).permit(:api_id, :category, :user_id, :notes)
   end	
 	
 end

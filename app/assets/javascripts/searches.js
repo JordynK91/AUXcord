@@ -11,12 +11,15 @@ $(document).on('turbolinks:load', function(){
     var time = dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
     var startDateTime = dt.getFullYear().toString() + "-" + month + "-" + day + "T00:00:00Z";
     dateField.value= startDateTime;
+    stateSelect.style.display = "none";
 
-    changeLocation.addEventListener("click", function(){
+    changeLocation.addEventListener("click", hideStuff);
+
+    function hideStuff(){
         locationField.value = "";
-        stateSelect.style.display = "none";
+        stateSelect.style.display = "block";
         changeLocation.style.display = "none";
-    });
+    }
 
 //Prepends a zero if the month/day is single digit.
     function preZero(num){

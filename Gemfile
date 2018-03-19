@@ -59,3 +59,5 @@ gem 'jquery-rails'
 gem 'bootstrap', '~> 4.0.0'
 #makes page shareable to social media
 gem 'shareable', :git => "https://github.com/simon0191/shareable"
+#allows user to upload photos to database
+gem 'paperclip'

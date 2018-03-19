@@ -42,7 +42,7 @@ class ConcertsController < ApplicationController
 
 private
   def concert_params
-    params.require(:concert).permit(:api_id, :category, :user_id, :notes)
+    params.require(:concert).permit(:api_id, :category, :user_id, :notes, :image, :image_file_size)
   end	
 	
 end

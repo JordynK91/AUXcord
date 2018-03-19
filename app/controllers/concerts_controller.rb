@@ -35,7 +35,7 @@ class ConcertsController < ApplicationController
   end  
 
   def update
-    concert = Concert.find_by_api_id(params[:api_id])
+    concert = Concert.find_by_id(params[:id])
     concert.update(concert_params)
       redirect_to "/users/#{current_user.id}"
   end

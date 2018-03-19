@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 		@concerts_upcomings = Concert.where(user_id: params[:id]).where(category: "up_coming")
 		@concerts_wishlist = Concert.where(user_id: params[:id]).where(category: "wish_list")
 		@concerts_pastevents = Concert.where(user_id: params[:id]).where(category: "past_events")
-
+		@concert = Concert.find_by_api_id(params[:api_id])
     end
 	
 	def update

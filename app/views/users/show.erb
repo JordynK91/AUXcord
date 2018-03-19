@@ -138,16 +138,30 @@
 	          		<input type='hidden' value="<%= u.id%>">
 	          	 	<%= f.submit "Add Notes"%>
 	          		<% end %>
+
+	          		<br>
+
+	          		<%= form_for u do |f| %>
+	          		<%= f.file_field :image %>
+	          		<%= f.submit "Upload Photo" %>
+	       			<%end%>
+
+	       		<div><%= image_tag u.image%></div>
+	       	
+
+
+
 	          		<br>
 	                <!-- delete this concert from concert database-->
 	                <%= form_tag(concert_path, method: "delete") do %>
                         <input type='hidden' name='api_id' value="<%=@event_id%>">
                         <%= submit_tag("Delete") %></br></br><hr></br>	
-                    <% end %>
+                    <% end %>   
                 <%end%>    
 	        <%end%>    
- </div>
+
 </div>	
+</div>
 
 <div class="tab-pane" id="achievments" role="tabpanel">
 		<div class = 'achievments-photo'> 

@@ -1,20 +1,39 @@
 class SearchesController < ApplicationController
     def index
         if params[:id]
-            if params[:state_id] != ""
-                puts "first ran"
-                puts response
-                response = HTTParty.get("http://app.ticketmaster.com/discovery/v2/events.json?keyword=#{params[:id]}&classificationName=music&stateCode=#{params[:state_id]}&startDateTime=#{params[:date]}&countryCode=US&sort=date,asc&apikey=#{ENV["API_KEY"]}", format: :plain)
-                @results = JSON.parse response, symbolize_names: true
-            elsif params[:latlon] != ""
-                puts "second ran"
-                response = HTTParty.get("http://app.ticketmaster.com/discovery/v2/events.json?keyword=#{params[:id]}&classificationName=music&latlong=#{params[:latlon]}&radius=50&startDateTime=#{params[:date]}&countryCode=US&sort=date,asc&apikey=#{ENV["API_KEY"]}", format: :plain)
-                @results = JSON.parse response, symbolize_names: true
-            elsif params[:keyword] != ""
-                puts "third ran"
-                response = HTTParty.get("http://app.ticketmaster.com/discovery/v2/events.json?keyword=#{params[:id]}&classificationName=music&startDateTime=#{params[:date]}&countryCode=US&sort=date,asc&apikey=#{ENV["API_KEY"]}", format: :plain)
-                @results = JSON.parse response, symbolize_names: true
-            end
+            if params[:startDate] != "" && params[:endDate] != ""
+                startDate = params[:startDate] + "T00:00:00Z"
+                endDate = params[:endDate] + "T00:00:00Z"
+                if params[:state_id] != ""
+                    puts "first ran"
+                    puts response
+                    response = HTTParty.get("http://app.ticketmaster.com/discovery/v2/events.json?keyword=#{params[:id]}&classificationName=music&stateCode=#{params[:state_id]}&startDateTime=#{startDate}&endDateTime=#{endDate}&countryCode=US&sort=date,asc&apikey=#{ENV["API_KEY"]}", format: :plain)
+                    @results = JSON.parse response, symbolize_names: true
+                elsif params[:latlon] != ""
+                    puts "second ran"
+                    response = HTTParty.get("http://app.ticketmaster.com/discovery/v2/events.json?keyword=#{params[:id]}&classificationName=music&latlong=#{params[:latlon]}&radius=50&startDateTime=#{startDate}&endDateTime=#{endDate}&countryCode=US&sort=date,asc&apikey=#{ENV["API_KEY"]}", format: :plain)
+                    @results = JSON.parse response, symbolize_names: true
+                elsif params[:keyword] != ""
+                    puts "third ran"
+                    response = HTTParty.get("http://app.ticketmaster.com/discovery/v2/events.json?keyword=#{params[:id]}&classificationName=music&startDateTime=#{startDate}&endDateTime=#{endDate}&countryCode=US&sort=date,asc&apikey=#{ENV["API_KEY"]}", format: :plain)
+                    @results = JSON.parse response, symbolize_names: true
+                end
+            else    
+                if params[:state_id] != ""
+                    puts "first ran"
+                    puts response
+                    response = HTTParty.get("http://app.ticketmaster.com/discovery/v2/events.json?keyword=#{params[:id]}&classificationName=music&stateCode=#{params[:state_id]}&startDateTime=#{params[:date]}&countryCode=US&sort=date,asc&apikey=#{ENV["API_KEY"]}", format: :plain)
+                    @results = JSON.parse response, symbolize_names: true
+                elsif params[:latlon] != ""
+                    puts "second ran"
+                    response = HTTParty.get("http://app.ticketmaster.com/discovery/v2/events.json?keyword=#{params[:id]}&classificationName=music&latlong=#{params[:latlon]}&radius=50&startDateTime=#{params[:date]}&countryCode=US&sort=date,asc&apikey=#{ENV["API_KEY"]}", format: :plain)
+                    @results = JSON.parse response, symbolize_names: true
+                elsif params[:keyword] != ""
+                    puts "third ran"
+                    response = HTTParty.get("http://app.ticketmaster.com/discovery/v2/events.json?keyword=#{params[:id]}&classificationName=music&startDateTime=#{params[:date]}&countryCode=US&sort=date,asc&apikey=#{ENV["API_KEY"]}", format: :plain)
+                    @results = JSON.parse response, symbolize_names: true
+                end
+            end    
         else
            @results = nil;
         end

@@ -150,11 +150,12 @@
 
 	       		<div><%= image_tag u.image%></div>
 	       		<br>
+	       		<div class="image">
 	       		<%= form_for u do |f| %>
 	          		<div><%= f.file_field :image %></div>
 	          		<div><%= f.submit "Upload Photo" %></div>
+	          	</div>
 	          		<% end %>
-	       	
 	       				</div>
 	       			</div>
 	       		</div>
@@ -178,8 +179,8 @@
  			
 			<div class="user-container">
  			<!-- achivements determined by archive data --> 
+ 			<div> You don't have any achievements yet. Start going to some concerts! </div>
  			<% if @archives.length == 0 %>
- 				<div> You don't have any achievements yet. Start going to some concerts! </div>
  			<% end %>
 
  			<!-- awards initially appear faded, become sharper when earned -->

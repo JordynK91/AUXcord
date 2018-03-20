@@ -26,7 +26,7 @@ class UsersController < ApplicationController
 	    if user.save
 	      redirect_to "/login"
 	    else 
-	      flash[:alert] = "Account info invalid. Please try again." 
+	     flash[:alert] = "Account info invalid. Please try again."
 	    end
   end
 

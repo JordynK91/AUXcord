@@ -14,7 +14,7 @@ $(document).on('turbolinks:load', function(){
     dateField.value= startDateTime;
     stateSelect.style.display = "none";
     dateSelect.style.display = "none";
-
+    //shows start and end date filters
     pickDates.addEventListener("click", showDates);
     function showDates(){
         dateSelect.style.display = "block";
@@ -38,14 +38,14 @@ $(document).on('turbolinks:load', function(){
             return result;
         }
     }
-
+    //checks to see if location is already saved in session storage
     if(sessionStorage.loc == undefined || sessionStorage.loc == ""){
         getLocation();
     }
     else{
         locationField.value = sessionStorage.loc;
     }
-
+    //runs geolocation and saves current location to session storage
     function getLocation() {
         if (navigator.geolocation) {
          navigator.geolocation.getCurrentPosition(setPosition,handleError);

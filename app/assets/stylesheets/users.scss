@@ -1,9 +1,8 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
 .profile {
-    // padding-left: 20px;	
+    // padding-left: 20px;  
     background-color: black;
 }
 
@@ -32,8 +31,7 @@
 }
 
 .nav {
-    margin-left: 230px;
-    // background-color: black;  
+    margin-left: 230px; // background-color: black;  
 }
 
 .nav-item {
@@ -65,8 +63,7 @@
     font-size: 80px;
     color: #FFFFFF;
     position: relative;
-    top: 300px;
-    // left: 2%;
+    top: 300px; // left: 2%;
     text-align: center;
 }
 
@@ -164,24 +161,23 @@
     font-style: bold;
 }
 
-
-.award{ height: 200px;
-        width: 200px;
-        display: in-line;
-        background-image: url('award');
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
+.award {
+    height: 200px;
+    width: 200px;
+    display: in-line;
+    background-image: url('award');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
-
-
 
 .user-container {
-    padding: 40px;  
+    padding: 40px;
 }
 
-.grey {opacity: .2;}
-
+.grey {
+    opacity: .2;
+}
 
 * hr {
     border: 0;

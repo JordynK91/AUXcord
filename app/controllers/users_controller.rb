@@ -12,7 +12,7 @@ class UsersController < ApplicationController
 		user= User.find_by_id(params[:id])
 	    if(user.id == current_user.id)
 	       user.update(user_params)
-	       flash[:message] = 'updated successfully'
+	       flash[:message] = 'User updated successfully.'
            redirect_to "/users/#{user.id}"	
         end
     end    
@@ -26,7 +26,7 @@ class UsersController < ApplicationController
 	    if user.save
 	      redirect_to "/login"
 	    else 
-	      flash[:alert] = "Account Info Invalid. Please Try Again." 
+	      flash[:alert] = "Account info invalid. Please try again." 
 	    end
   end
 

@@ -132,30 +132,38 @@
 					<p>Venue: <%= @result[:_embedded][:venues][0][:name]%></p>
 
 					<!-- add notes about the concert you attended -->	
+
+					<div class = 'container-fluid'>
+						<div class = 'row'>
+							<div class = 'col-6'>
+
 					<%= form_for u do |f| %>
 	          		<div>Notes:</div>
-	          		<div><%= f.text_area :notes, size: '20x5', placeholder: 'How was the show? Who did you go with? What songs did they play? Record your memories here.' %></div>
+	          		<div><%= f.text_area :notes, size: '30x10', placeholder: 'How was the show? Who did you go with? What songs did they play? Record your memories here.' %></div>
 	          		<input type='hidden' value="<%= u.id%>">
 	          	 	<%= f.submit "Add Notes"%>
 	          		<% end %>
-
+	          			</div>
 	          		<br>
 
-	          		<%= form_for u do |f| %>
-	          		<%= f.file_field :image %>
-	          		<%= f.submit "Upload Photo" %>
-	       			<%end%>
+	       				<div class = 'col-6'>
 
 	       		<div><%= image_tag u.image%></div>
+	       		<br>
+	       		<%= form_for u do |f| %>
+	          		<div><%= f.file_field :image %></div>
+	          		<div><%= f.submit "Upload Photo" %></div>
+	          		<% end %>
 	       	
-
-
+	       				</div>
+	       			</div>
+	       		</div>
 
 	          		<br>
 	                <!-- delete this concert from concert database-->
 	                <%= form_tag(concert_path, method: "delete") do %>
                         <input type='hidden' name='api_id' value="<%=@event_id%>">
-                        <%= submit_tag("Delete") %></br></br><hr></br>	
+                        <%= submit_tag("Delete Concert") %></br></br><hr></br>	
                     <% end %>   
                 <%end%>    
 	        <%end%>    
@@ -275,6 +283,7 @@
 	         	 <div><%= f.text_field :name %></div>
 	          <div>favorites:</div>
 	          	<div><%= f.text_field :faves %></div>
+	         	<br>
 	          <%= f.submit "Save"%></br></br><hr></br>	
           <% end %>
 

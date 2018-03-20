@@ -30,7 +30,7 @@ class SearchesController < ApplicationController
     end	
 
     def search 
-        redirect_to controller: 'searches', action: 'index', id: params[:keyword], date: params[:date], state_id: params[:state_id], latlon: params[:latlon]
+        redirect_to controller: 'searches', action: 'index', id: params[:keyword], date: params[:date], state_id: params[:state_id], latlon: params[:latlon], startDate: params[:startDate], endDate: params[:endDate]
     end
 
 end

@@ -1,5 +1,6 @@
 $(document).on('turbolinks:load', function(){
-    getLocation();
+    var dateSelect = document.querySelector(".dateSelect");
+    var pickDates = document.querySelector(".pickDates");
     var dateField = document.getElementById('date');
     var stateSelect = document.querySelector(".stateSelect");
     var searchField = document.getElementById('keyword').focus();
@@ -12,7 +13,13 @@ $(document).on('turbolinks:load', function(){
     var startDateTime = dt.getFullYear().toString() + "-" + month + "-" + day + "T00:00:00Z";
     dateField.value= startDateTime;
     stateSelect.style.display = "none";
+    dateSelect.style.display = "none";
 
+    pickDates.addEventListener("click", showDates);
+    function showDates(){
+        dateSelect.style.display = "block";
+        pickDates.style.display = "none";
+    }
     //shows states when user selects "change location"
     changeLocation.addEventListener("click", showStates);
     function showStates(){
@@ -32,6 +39,13 @@ $(document).on('turbolinks:load', function(){
         }
     }
 
+    if(sessionStorage.loc == undefined || sessionStorage.loc == ""){
+        getLocation();
+    }
+    else{
+        locationField.value = sessionStorage.loc;
+    }
+
     function getLocation() {
         if (navigator.geolocation) {
          navigator.geolocation.getCurrentPosition(setPosition,handleError);
@@ -40,6 +54,7 @@ $(document).on('turbolinks:load', function(){
     }
     function setPosition(position) {
         curLocation = position.coords.latitude + "," + position.coords.longitude;
+        sessionStorage.setItem('loc', position.coords.latitude + "," + position.coords.longitude );
         console.log("setPosition ran")
         locationField.value = position.coords.latitude + "," + position.coords.longitude;
     }
@@ -63,8 +78,6 @@ $(document).on('turbolinks:load', function(){
                 break;
         }
     }
-    
-    //latlong=39.9525839,-75.1652215
     
    
 });

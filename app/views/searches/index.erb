@@ -2,6 +2,7 @@
 <div class="search">
 <%= form_tag search_path do %>
     <%= text_field_tag :keyword, nil, :placeholder => "Artist or Venue" %>
+    <%= submit_tag "Search" %>
     <div class="stateSelect">
     <%= select_tag(:state_id, options_for_select(
         [["Pick a state",""],
@@ -60,9 +61,17 @@
     </div>
     <%= hidden_field_tag :date  %>
     <%= hidden_field_tag :latlon  %>
-   <%= submit_tag "Search" %>
+    <div class="dateSelect">
+    <br />
+    <%=label_tag 'Start Date' %>
+    <%= date_field_tag :startDate %><br />
+    <%=label_tag 'End Date' %>
+    <%= date_field_tag :endDate %>
+    </div>
   <% end %>
   <p class="changeLocation">Change location</p>
+  <p class="pickDates"></p>
+
 <br/>
 
 
@@ -77,7 +86,6 @@
    0/
    /
 #%>
-
 
 <% if @results %>
 <%if @results[:page][:totalElements] != 0 %>

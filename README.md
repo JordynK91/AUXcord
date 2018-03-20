@@ -13,22 +13,22 @@ Concert data obtained from <a href = https://developer.ticketmaster.com/products
 
 
 <strong>We coudn't have done it without these helpful gems: </strong>
-<a href = https://rubygems.org/gems/bcrypt> bcrypt </a>
-<a href = https://github.com/jnunemaker/httparty> httpparty </a>
-<a href = https://github.com/laserlemon/figaro> figaro </a>
-<a href = https://github.com/twbs/bootstrap-rubygem> bootstrap </a>
-<a href = https://github.com/hermango/shareable> shareable </a>
-<a href = https://github.com/thoughtbot/paperclip> paperclip </a>
-
-
+<ul>
+<li a href = https://rubygems.org/gems/bcrypt> bcrypt </a> </li>
+<li a href = https://github.com/jnunemaker/httparty> httpparty </a></li>
+<li a href = https://github.com/laserlemon/figaro> figaro </a></li>
+<li a href = https://github.com/twbs/bootstrap-rubygem> bootstrap </a></li>
+<li a href = https://github.com/hermango/shareable> shareable </a></li>
+<li a href = https://github.com/thoughtbot/paperclip> paperclip </a></li>
+</ul>
 
 
 <strong>Image Credits:</strong>
 
-<a href = https://unsplash.com/photos/bVJWdnwniyQ> Frankie Cordoba </a>
-<a href = https://unsplash.com/photos/YtQAhNbqa2o> William Iven </a>
-<a href = https://thenounproject.com/search/?q=music%20award&i=573479> Anniken & Andreas </a>
-<a href = https://pixabay.com> Pixabay </a>
+<li a href = https://unsplash.com/photos/bVJWdnwniyQ> Frankie Cordoba </a></li>
+<li a href = https://unsplash.com/photos/YtQAhNbqa2o> William Iven </a></li>
+<li a href = https://thenounproject.com/anniken-andreas/> Anniken and Andreas </a></li>
+<li a href = https://pixabay.com> Pixabay </a></li>
 
 
 Developed By:

@@ -66,5 +66,5 @@ gem 'shareable', :git => "https://github.com/simon0191/shareable"
 gem 'google-api-client', require: 'google/apis/calendar_v3'
 
 #allows user to upload photos to database
-gem 'paperclip'
+gem "paperclip", "~> 6.0.0"
 

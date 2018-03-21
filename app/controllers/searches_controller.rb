@@ -1,5 +1,8 @@
 class SearchesController < ApplicationController
     def index
+    if current_user == nil 
+            redirect_to root_path
+    else                   
         if params[:id]
             if params[:startDate] != "" && params[:endDate] != ""
                 startDate = params[:startDate] + "T00:00:00Z"
@@ -37,6 +40,8 @@ class SearchesController < ApplicationController
         else
            @results = nil;
         end
+    end    
+   
     end
 
 

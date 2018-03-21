@@ -3,24 +3,27 @@ Rails.application.routes.draw do
   get '/search', to: 'searches#index'
   post '/search', to: 'searches#search'
   get '/search/:id', to: 'searches#index'
-  get '/events/:id', to: 'searches#show'
+  get '/concertinfo/:id', to: 'searches#show'
+  get '/redirect', to: 'users#redirect', as: 'redirect'
+  get '/callback', to: 'users#callback', as: 'callback'
+  post '/events/:calendar_id', to: 'users#new_event', as: 'new_event', calendar_id: /[^\/]+/
+  get '/calendars', to: 'users#calendars', as: 'calendars'
+  get '/events/:calendar_id', to: 'users#events', as: 'events', calendar_id: /[^\/]+/
+
+	resources :users
+	resources :concerts
+
+	post '/concerts', to: 'concerts#update'
 
 
+	root to: 'home#index'
+  post '/users', to: 'concerts#update'
 
 
-resources :users
-resources :concerts
+	post '/login', to: 'sessions#create'
+	  
+	post '/logout', to: 'sessions#destroy'
 
-post '/users', to: 'concerts#update'
-
-
-root to: 'home#index'
-
-
-post '/login', to: 'sessions#create'
-  
-post '/logout', to: 'sessions#destroy'
-
-get '/login', to: 'home#login'
+	get '/login', to: 'home#login'
 
 end

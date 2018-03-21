@@ -60,16 +60,41 @@
 	                        <% u.update(category: 'past_events')%>		        
 	                    <%else%>	                
 			                <div><h2><%= @result[:name] %></h2></div>
-							<div><a href="/events/<%= @event_id %>"><img src="<%= @result[:images][5][:url] %>" width='300px'></a></div>
+							<div><a href="/concertinfo/<%= @event_id %>"><img src="<%= @result[:images][5][:url] %>" width='300px'></a></div>
 							<p><div name='concertDate'><%= @result[:dates][:start][:localDate]%></div></p>
 							<p><%= @result[:dates][:start][:localTime]%></p>
 							<p>Venue: <%= @result[:_embedded][:venues][0][:name]%></p>
 							<!-- delete this concert from concert database-->
 	                        <%= form_tag(concert_path, method: "delete") do %>
 	                             <input type='hidden' name='api_id' value="<%=@event_id%>">
-	                            <%= submit_tag("Delete") %></br></br><hr></br>	
+	                            <%= submit_tag("Delete this concert") %>	
                             <%end%>
-	                    <%end%>
+                            </br>
+                            <!-- add this concert to your google calendar-->
+                            <%if @test != nil %>
+                                <h1>Add this concert to your Google Calendar:</h1>
+	                            <%= form_tag(new_event_path(@test), method: "post", :id => "add_event") do %>
+								    <select id="calendar_id">
+									    <% @calendar_list.items.each do |calendar| %>
+	                                        <% if calendar.access_role == 'owner' %>
+	                                        <option value="<%= calendar.id %>"><%= calendar.summary %></option>
+	                                        <% end%>
+	                                    <% end %>
+	                                </select>
+	                                <input type="hidden" name="concert_id" value="<%= @event_id%>"> 
+	                                <%= submit_tag("Add Concert") %>
+	                            <% end %>
+	                            <%= form_tag(redirect_path, method: "get") do %>	         
+							    <%= submit_tag "Switch Google Account" %>
+                                <%end%>
+	                        <%else%>
+	                            <%= form_tag(redirect_path, method: "get") do %>	         
+							    <%= submit_tag "Add It to Google Calendar" %>
+                                <%end%>    
+                            <%end%>
+
+                            </br><hr></br>
+                        <%end%>
                     <% end %>                  
                 <%end%>
   			</div>
@@ -91,7 +116,7 @@
 		 			<%response = HTTParty.get("http://app.ticketmaster.com/discovery/v2/events/#{@event_id}.json?apikey=#{ENV["API_KEY"]}", format: :plain)%>
 		            <% @result = JSON.parse response, symbolize_names: true%>	                
 		            <div><h2><%= @result[:name] %></h2></div>
-					<div><a href="/events/<%= @event_id %>"><img src="<%= @result[:images][5][:url] %>" width='300px'></a></div>
+					<div><a href="/concertinfo/<%= @event_id %>"><img src="<%= @result[:images][5][:url] %>" width='300px'></a></div>
 					<p><%= @result[:dates][:start][:localDate]%></p>
 					<p><%= @result[:dates][:start][:localTime]%></p>
 					<p>Venue: <%= @result[:_embedded][:venues][0][:name]%></p>
@@ -126,7 +151,7 @@
 			            <% Archive.create(api_id: @event_id, user_id: current_user.id, name: @result[:name], img_url: @result[:images][5][:url], date: @result[:dates][:start][:localDate], time: @result[:dates][:start][:localTime], venue: @result[:_embedded][:venues][0][:name], info: @result[:info], category:@result[:classifications][0][:genre][:name] )%>
 			        <% end %>                   
 		            <div><h2><%= @result[:name] %></h2></div>
-					<div><a href="/events/<%= @event_id %>"><img src="<%= @result[:images][5][:url] %>" width='300px'></a></div>
+					<div><a href="/concertinfo/<%= @event_id %>"><img src="<%= @result[:images][5][:url] %>" width='300px'></a></div>
 					<p><%= @result[:dates][:start][:localDate]%></p>
 					<p><%= @result[:dates][:start][:localTime]%></p>
 					<p>Venue: <%= @result[:_embedded][:venues][0][:name]%></p>
@@ -275,22 +300,25 @@
 	          <div>Email:</div>
 	          	<div><%= f.text_field :email %></div>
 	          <div>Password:</div>
-	         	 <div><%= f.text_field :password %></div>
+	         	<div><%= f.text_field :password %></div>
 	          <div>Bio:</div>
-	         	 <div><%= f.text_area :bio %></div>
+	         	<div><%= f.text_area :bio %></div>
 	          <div>Location:</div>
-	         	 <div><%= f.text_field :location %></div>
+	         	<div><%= f.text_field :location %></div>
 	          <div>Name:</div>
-	         	 <div><%= f.text_field :name %></div>
+	         	<div><%= f.text_field :name %></div>
 	          <div>favorites:</div>
+
 	          	<div><%= f.text_field :faves %></div>
 	         	<br>
 	          <%= f.submit "Save"%></br></br><hr></br>	
           <% end %>
+
 
  	<div><%= link_to('Delete Your Account', user_path, method: :delete, class: 'delete')%></div>
 </div>
 
 </div>	
 </div>
+<script type="text/javascript" src="../../assets/javascripts/google_cal.js"></script>
 

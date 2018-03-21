@@ -5,23 +5,23 @@ class UsersController < ApplicationController
 		@concerts_upcomings = Concert.where(user_id: params[:id]).where(category: "up_coming")
 		@concerts_wishlist = Concert.where(user_id: params[:id]).where(category: "wish_list")
 		@concerts_pastevents = Concert.where(user_id: params[:id]).where(category: "past_events")
-        
-        # google calendar stuff below:
-        if session[:authorization]
-	       client = Signet::OAuth2::Client.new(client_options)
-	       client.update!(session[:authorization])
-	       service = Google::Apis::CalendarV3::CalendarService.new
-	       service.authorization = client
-	       @calendar_list = service.list_calendar_lists
-	       @test = @calendar_list.items.first.id
-        end 
-    end
+   
+    # google calendar stuff below:
+    if session[:authorization]
+       client = Signet::OAuth2::Client.new(client_options)
+       client.update!(session[:authorization])
+       service = Google::Apis::CalendarV3::CalendarService.new
+       service.authorization = client
+       @calendar_list = service.list_calendar_lists
+       @test = @calendar_list.items.first.id
+    end 
+  end
 	
 	def update
 		user= User.find_by_id(params[:id])
 	    if(user.id == current_user.id)
 	       user.update(user_params)
-	       flash[:message] = 'updated successfully'
+	       flash[:message] = 'User updated successfully.'
            redirect_to "/users/#{user.id}"	
         end
     end    
@@ -35,7 +35,7 @@ class UsersController < ApplicationController
 	    if user.save
 	      redirect_to "/login"
 	    else 
-	      flash[:alert] = "Account Info Invalid. Please Try Again." 
+	     flash[:alert] = "Account info invalid. Please try again."
 	    end
 	end
 

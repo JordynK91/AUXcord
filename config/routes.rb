@@ -17,6 +17,7 @@ Rails.application.routes.draw do
 
 
 	root to: 'home#index'
+  post '/users', to: 'concerts#update'
 
 
 	post '/login', to: 'sessions#create'

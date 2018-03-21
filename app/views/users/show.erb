@@ -157,21 +157,45 @@
 					<p>Venue: <%= @result[:_embedded][:venues][0][:name]%></p>
 
 					<!-- add notes about the concert you attended -->	
+
+					<div class = 'container-fluid'>
+						<div class = 'row'>
+							<div class = 'col-6'>
+
 					<%= form_for u do |f| %>
-	          		<div>Notes</div>
-	          		<div><%= f.text_area :notes %></div>
+	          		<div>Notes:</div>
+	          		<div><%= f.text_area :notes, size: '30x10', placeholder: 'How was the show? Who did you go with? What songs did they play? Record your memories here.' %></div>
+	          		<input type='hidden' value="<%= u.id%>">
 	          	 	<%= f.submit "Add Notes"%>
 	          		<% end %>
+	          			</div>
+	          		<br>
 
+	       				<div class = 'col-6'>
+
+	       		<div><%= image_tag u.image%></div>
+	       		<br>
+	       		<div class="image">
+	       		<%= form_for u do |f| %>
+	          		<div><%= f.file_field :image %></div>
+	          		<div><%= f.submit "Upload Photo" %></div>
+	          	</div>
+	          		<% end %>
+	       				</div>
+	       			</div>
+	       		</div>
+
+	          		<br>
 	                <!-- delete this concert from concert database-->
 	                <%= form_tag(concert_path, method: "delete") do %>
                         <input type='hidden' name='api_id' value="<%=@event_id%>">
-                        <%= submit_tag("Delete") %></br></br><hr></br>	
-                    <% end %>
+                        <%= submit_tag("Delete Concert") %></br></br><hr></br>	
+                    <% end %>   
                 <%end%>    
 	        <%end%>    
- </div>
+
 </div>	
+</div>
 
 <div class="tab-pane" id="achievments" role="tabpanel">
 		<div class = 'achievments-photo'> 
@@ -179,32 +203,90 @@
  		</div>
  			
 			<div class="user-container">
- 			<!-- achivements determined by archive data -->    
- 			<% if @archives.length >= 1 %>
- 				<div class = 'badge' id = 'badge1'> </div>
+ 			<!-- achivements determined by archive data --> 
+ 			<div> You don't have any achievements yet. Start going to some concerts! </div>
+ 			<% if @archives.length == 0 %>
  			<% end %>
 
- 			<% if @archives.length >= 5 %>
- 				<div> Roadie: 5 concerts attended </div>
- 			<% end %>
+ 			<!-- awards initially appear faded, become sharper when earned -->
+ 			<div class = 'row'>
+ 				<div class = 'col-smal'>
+ 					<% if @archives.length >= 1 %>
+ 						<div class='visible'>
+ 					<% else %>
+ 						<div  class = 'grey'>
+ 					<% end %>
+ 							<div class = 'awardheader'> Opening Act</div>
+ 							<div class = 'award'> </div>
+ 							<div class =' awardtext'> 1 Concert <br> Attended</div>
+ 						</div>
+ 				</div>
 
- 			<% if @archives.length >= 10 %>
- 				<div> MC: 10 concerts attended </div>
- 			<% end %>
+ 		
+ 				<div class = 'col-smal'>
+ 					<% if @archives.length >= 5 %>
+ 						<div class = 'visible'>
+ 					<% else %>
+ 						<div class = 'grey'>
+ 					<% end %>
+ 							<div class = 'awardheader'> Roadie</div>
+ 							<div class = 'award'> </div>
+ 							<div class =' awardtext'> 5 Concerts <br> Attended</div>
+ 						</div>
+ 				</div>
+ 			
 
-			<% if @archives.length >= 25 %>
- 				<div> Shredder: 25 concerts attended </div>
- 			<% end %>
+ 				<div class = 'col-smal'>
+ 					<% if @archives.length >= 10 %>
+ 						<div class = 'visible'>
+ 					<% else %>
+ 						<div class = 'grey'>
+ 					<% end %>
+ 							<div class = 'awardheader'> MC </div>
+ 							<div class = 'award'> </div>
+ 							<div class =' awardtext'> 10 Concerts <br> Attended</div>
+ 						</div>
+ 				</div>
+ 	
+				<div class = 'col-smal'>
+					<% if @archives.length >= 25 %>
+						<div class = 'visible'>
+					<% else %>
+						<div class = 'grey'>
+					<% end %>
+							<div class = 'awardheader'> Shredder </div>
+ 							<div class = 'award'> </div>
+ 							<div class =' awardtext'> 25 Concerts <br> Attended</div>
+ 						</div>
+ 				</div>
+ 	
+ 				<div class = 'col-smal'>	
+ 					<% if @archives.length >= 50  %>
+ 						<div class = 'visible'>
+ 					<% else %>
+ 						<div class = 'grey'>
+ 					<% end %>
+							<div class = 'awardheader'> Rock Star </div>
+ 							<div class = 'award'> </div>
+ 							<div class =' awardtext'> 50 Concerts <br> Attended</div>
+ 						</div>
+ 				</div>
 
- 			<% if @archives.length >= 50  %>
- 				<div> Rock Star: 50 concerts attended</div>
- 			<% end %>
 
- 			<% if @archives.length >= 100  %>
- 				<div> Legendary: 100 concerts attended! </div>
- 			<% end %>
+ 			<div class = 'col-smal'>
+ 				<% if @archives.length >= 100  %>
+ 					<div class = 'visible'>
+ 				<% else %>
+ 					<div class = 'grey'>
+ 				<% end %>		
+ 					<div class = 'awardheader'> Hall of Fame</div>
+ 					<div class = 'award'> </div>
+ 					<div class =' awardtext'> 100 Concerts <br> Attended</div>
+ 				</div>
 			</div>
   		</div> 
+  	</div>
+</div>
 
 		<div class="tab-pane" id="user" role="tabpanel">
 
@@ -228,7 +310,8 @@
 	          <div>favorites:</div>
 
 	          	<div><%= f.text_field :faves %></div>
-	          <%= f.submit "Save"%>
+	         	<br>
+	          <%= f.submit "Save"%></br></br><hr></br>	
           <% end %>
 
 

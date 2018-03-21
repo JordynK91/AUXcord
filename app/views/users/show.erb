@@ -67,16 +67,12 @@
 							<!-- delete this concert from concert database-->
 	                        <%= form_tag(concert_path, method: "delete") do %>
 	                             <input type='hidden' name='api_id' value="<%=@event_id%>">
-	                            <%= submit_tag("Delete") %>	
+	                            <%= submit_tag("Delete this concert") %>	
                             <%end%>
+                            </br>
                             <!-- add this concert to your google calendar-->
-                            <%= form_tag(redirect_path, method: "get") do %>	         
-							    <%= submit_tag "Add It to Google Calendar" %>
-                            <%end%>
-
-                            <div>
-                            <% if @test == nil %>
-                            <%else%>
+                            <%if @test != nil %>
+                                <h1>Add this concert to your Google Calendar:</h1>
 	                            <%= form_tag(new_event_path(@test), method: "post", :id => "add_event") do %>
 								    <select id="calendar_id">
 									    <% @calendar_list.items.each do |calendar| %>
@@ -86,11 +82,16 @@
 	                                    <% end %>
 	                                </select>
 	                                <input type="hidden" name="concert_id" value="<%= @event_id%>"> 
-	                                <%= submit_tag("add event") %>
+	                                <%= submit_tag("Add Concert") %>
 	                            <% end %>
-                            <% end%>
-                            </div>
-
+	                            <%= form_tag(redirect_path, method: "get") do %>	         
+							    <%= submit_tag "Switch Google Account" %>
+                                <%end%>
+	                        <%else%>
+	                            <%= form_tag(redirect_path, method: "get") do %>	         
+							    <%= submit_tag "Add It to Google Calendar" %>
+                                <%end%>    
+                            <%end%>
 
                             </br><hr></br>
                         <%end%>

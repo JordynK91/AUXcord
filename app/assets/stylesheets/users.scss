@@ -157,8 +157,9 @@
 }
 
 .awardheader {
-    font-size: 30px;
-    font-style: bold;
+    font-size: 23px;
+    font-weight: bold;
+    text-align: center;
 }
 
 .award {
@@ -169,6 +170,10 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+.awardtext {
+    font-style: italic;
 }
 
 .row {

@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   get '/search', to: 'searches#index'
   post '/search', to: 'searches#search'
   get '/search/:id', to: 'searches#index'
-  get '/events/:id', to: 'searches#show'
+  get '/concertinfo/:id', to: 'searches#show'
   get '/redirect', to: 'users#redirect', as: 'redirect'
   get '/callback', to: 'users#callback', as: 'callback'
   post '/events/:calendar_id', to: 'users#new_event', as: 'new_event', calendar_id: /[^\/]+/

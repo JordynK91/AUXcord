@@ -1,5 +1,8 @@
+
+
 <ul>
     <% @calendar_list.items.each do |calendar| %>
-    <li><%= calendar.summary %> (<%= calendar.id %>)</li>
-  <% end %>
+    <li><h1><%= calendar.summary %></h1> </li>
+    	<li><%= calendar.id %></li>
+   	<% end %>
 </ul>

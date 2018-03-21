@@ -60,7 +60,7 @@
 	                        <% u.update(category: 'past_events')%>		        
 	                    <%else%>	                
 			                <div><h2><%= @result[:name] %></h2></div>
-							<div><a href="/events/<%= @event_id %>"><img src="<%= @result[:images][5][:url] %>" width='300px'></a></div>
+							<div><a href="/concertinfo/<%= @event_id %>"><img src="<%= @result[:images][5][:url] %>" width='300px'></a></div>
 							<p><div name='concertDate'><%= @result[:dates][:start][:localDate]%></div></p>
 							<p><%= @result[:dates][:start][:localTime]%></p>
 							<p>Venue: <%= @result[:_embedded][:venues][0][:name]%></p>
@@ -69,18 +69,31 @@
 	                             <input type='hidden' name='api_id' value="<%=@event_id%>">
 	                            <%= submit_tag("Delete") %>	
                             <%end%>
-                           <%#= form_tag new_event_url do %>
-                               <%#= submit_tag 'Add event' %>
-                           <% #end %>
-                           
-
-                            <%= form_tag(redirect_path, method: "get") do %>
-	                      	
-							 <%= submit_tag "whatever" %>
+                            <!-- add this concert to your google calendar-->
+                            <%= form_tag(redirect_path, method: "get") do %>	         
+							    <%= submit_tag "Add It to Google Calendar" %>
                             <%end%>
-                          </br></br><hr></br>
-                           
-	                    <%end%>
+
+                            <div>
+                            <% if @test == nil %>
+                            <%else%>
+	                            <%= form_tag(new_event_path(@test), method: "post", :id => "add_event") do %>
+								    <select id="calendar_id">
+									    <% @calendar_list.items.each do |calendar| %>
+	                                        <% if calendar.access_role == 'owner' %>
+	                                        <option value="<%= calendar.id %>"><%= calendar.summary %></option>
+	                                        <% end%>
+	                                    <% end %>
+	                                </select>
+	                                <input type="hidden" name="concert_id" value="<%= @event_id%>"> 
+	                                <%= submit_tag("add event") %>
+	                            <% end %>
+                            <% end%>
+                            </div>
+
+
+                            </br><hr></br>
+                        <%end%>
                     <% end %>                  
                 <%end%>
   			</div>
@@ -102,7 +115,7 @@
 		 			<%response = HTTParty.get("http://app.ticketmaster.com/discovery/v2/events/#{@event_id}.json?apikey=#{ENV["API_KEY"]}", format: :plain)%>
 		            <% @result = JSON.parse response, symbolize_names: true%>	                
 		            <div><h2><%= @result[:name] %></h2></div>
-					<div><a href="/events/<%= @event_id %>"><img src="<%= @result[:images][5][:url] %>" width='300px'></a></div>
+					<div><a href="/concertinfo/<%= @event_id %>"><img src="<%= @result[:images][5][:url] %>" width='300px'></a></div>
 					<p><%= @result[:dates][:start][:localDate]%></p>
 					<p><%= @result[:dates][:start][:localTime]%></p>
 					<p>Venue: <%= @result[:_embedded][:venues][0][:name]%></p>
@@ -137,7 +150,7 @@
 			            <% Archive.create(api_id: @event_id, user_id: current_user.id, name: @result[:name], img_url: @result[:images][5][:url], date: @result[:dates][:start][:localDate], time: @result[:dates][:start][:localTime], venue: @result[:_embedded][:venues][0][:name], info: @result[:info], category:@result[:classifications][0][:genre][:name] )%>
 			        <% end %>                   
 		            <div><h2><%= @result[:name] %></h2></div>
-					<div><a href="/events/<%= @event_id %>"><img src="<%= @result[:images][5][:url] %>" width='300px'></a></div>
+					<div><a href="/concertinfo/<%= @event_id %>"><img src="<%= @result[:images][5][:url] %>" width='300px'></a></div>
 					<p><%= @result[:dates][:start][:localDate]%></p>
 					<p><%= @result[:dates][:start][:localTime]%></p>
 					<p>Venue: <%= @result[:_embedded][:venues][0][:name]%></p>
@@ -223,4 +236,5 @@
 
 </div>	
 </div>
+<script type="text/javascript" src="../../assets/javascripts/google_cal.js"></script>
 

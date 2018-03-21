@@ -81,7 +81,7 @@
   <p> We found <%= @results[:_embedded][:events].length %> results for you:</p>
   <% @results[:_embedded][:events].each do |event| %>   
     <div><h3><strong><u><%= event[:name] %></strong></u></h3></div>
-    <div><a href='/events/<%= event[:id] %>'><img src="<%= event[:images][2][:url] %>" width='305px'></a></div>
+    <div><a href='/concertinfo/<%= event[:id] %>'><img src="<%= event[:images][2][:url] %>" width='305px'></a></div>
     <p><%= event[:dates][:start][:localDate]%> <%= event[:dates][:start][:localTime]%></p>
     <p>Venue: <%= event[:_embedded][:venues][0][:name]%></p></br>
   <% end %>

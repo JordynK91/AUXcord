@@ -6,16 +6,20 @@ class UsersController < ApplicationController
 		@concerts_wishlist = Concert.where(user_id: params[:id]).where(category: "wish_list")
 		@concerts_pastevents = Concert.where(user_id: params[:id]).where(category: "past_events")
    
-    # google calendar stuff below:
-    if session[:authorization]
-       client = Signet::OAuth2::Client.new(client_options)
-       client.update!(session[:authorization])
-       service = Google::Apis::CalendarV3::CalendarService.new
-       service.authorization = client
-       @calendar_list = service.list_calendar_lists
-       @test = @calendar_list.items.first.id
-    end 
-  end
+	    # google calendar stuff below:
+	    # if @calendar_list != nil
+	       client = Signet::OAuth2::Client.new(client_options)
+	       client.update!(session[:authorization])
+	       service = Google::Apis::CalendarV3::CalendarService.new
+	       service.authorization = client
+	       @calendar_list = service.list_calendar_lists
+	       @test = @calendar_list.items.first.id       
+	       rescue Google::Apis::AuthorizationError
+           response = client.refresh!
+           session[:authorization] = session[:authorization].merge(response)
+           retry
+	    # end
+    end
 	
 	def update
 		user= User.find_by_id(params[:id])
@@ -46,45 +50,44 @@ class UsersController < ApplicationController
 	    end
 	end
 
-	# google canlendar methods
-    def redirect
-        client = Signet::OAuth2::Client.new(client_options)
-        redirect_to client.authorization_uri.to_s     
-	end
-
-	
-	def callback
-	    client = Signet::OAuth2::Client.new(client_options)
-	    client.code = params[:code]
-	    response = client.fetch_access_token!
-	    session[:authorization] = response
-	    redirect_to "/users/#{current_user.id}"
-    end  
-
-
-    def new_event
-		 	event_id = params[:concert_id]
-	 		response = HTTParty.get("http://app.ticketmaster.com/discovery/v2/events/#{event_id}.json?apikey=#{ENV["API_KEY"]}", format: :plain)
-	        result = JSON.parse response, symbolize_names: true
-	        concertDate = Date::strptime(result[:dates][:start][:localDate], "%Y-%m-%d")
-	        concertTime = result[:dates][:start][:localTime].to_time
+	 	# google canlendar methods
+     def redirect
+         client = Signet::OAuth2::Client.new(client_options)
+         redirect_to client.authorization_uri.to_s     
+ 	end
  
-		    client = Signet::OAuth2::Client.new(client_options)
-		    client.update!(session[:authorization])
-		    service = Google::Apis::CalendarV3::CalendarService.new
-		    service.authorization = client
-		    today = Date.today
-		    event = Google::Apis::CalendarV3::Event.new({
-		      start: Google::Apis::CalendarV3::EventDateTime.new(date: concertDate, time:concertTime),
-		      end: Google::Apis::CalendarV3::EventDateTime.new(date: concertDate + 1),
-		      summary: result[:name],
-		      description: result[:info],
-		      location: result[:_embedded][:venues][0][:name] 
-		    })
+ 	
+ 	def callback
+ 	    client = Signet::OAuth2::Client.new(client_options)
+ 	    client.code = params[:code]
+ 	    response = client.fetch_access_token!
+ 	    session[:authorization] = response
+ 	    redirect_to "/users/#{current_user.id}"
+     end  
+ 
+ 
+     def new_event
+ 		 	event_id = params[:concert_id]
+ 	 		response = HTTParty.get("http://app.ticketmaster.com/discovery/v2/events/#{event_id}.json?apikey=#{ENV["API_KEY"]}", format: :plain)
+ 	        result = JSON.parse response, symbolize_names: true
+            concertDateTime =DateTime.parse(result[:dates][:start][:localDate]+'T'+result[:dates][:start][:localTime]+'-04:00').rfc3339
+ 		    client = Signet::OAuth2::Client.new(client_options)
+ 		    client.update!(session[:authorization])
+ 		    service = Google::Apis::CalendarV3::CalendarService.new
+ 		    service.authorization = client
+ 		    today = Date.today
+ 		    event = Google::Apis::CalendarV3::Event.new({
+ 		      start: Google::Apis::CalendarV3::EventDateTime.new(date_time: concertDateTime),
+ 		      end: Google::Apis::CalendarV3::EventDateTime.new(date_time: concertDateTime),
+ 		      summary: result[:name],
+ 		      description: result[:info],
+ 		      location: result[:_embedded][:venues][0][:name] 
+ 		    })
+ 
+ 		    service.insert_event(params[:calendar_id], event)
+ 		redirect_to "/users/#{current_user.id}"    
+     end
 
-		    service.insert_event(params[:calendar_id], event)
-		redirect_to "/users/#{current_user.id}"    
-    end
 
   	private
 	    

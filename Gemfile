@@ -31,6 +31,8 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
  gem 'bcrypt', '~> 3.1.7'
 
+ gem 'jquery-rails'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -59,5 +61,10 @@ gem 'jquery-rails'
 gem 'bootstrap', '~> 4.0.0'
 #makes page shareable to social media
 gem 'shareable', :git => "https://github.com/simon0191/shareable"
+
+#google calendar 
+gem 'google-api-client', require: 'google/apis/calendar_v3'
+
 #allows user to upload photos to database
 gem 'paperclip'
+

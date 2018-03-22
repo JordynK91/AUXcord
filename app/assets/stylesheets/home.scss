@@ -43,8 +43,9 @@ body {
   }
 
   .container-fluid {
-      padding-top: 50px;
-      padding-bottom: 50px;
+      padding-top: 35px;
+      padding-bottom: 35px;
+      // position: absolute;
   }
 
   .navbar {
@@ -58,6 +59,11 @@ body {
       background-color: #191919 !important;
   }
 
+.wrapper {
+  margin-bottom: 150px;
+
+}
+
 .navbar ul {
 	display: inline-block;
 	margin: 10px;		
@@ -69,7 +75,6 @@ body {
 
 .btn {
 	margin-left: 20px;
-	// margin-top: 20px;
 }
 
 .margin {

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180319210059) do
+ActiveRecord::Schema.define(version: 20180322182526) do
 
   create_table "archives", force: :cascade do |t|
     t.string "api_id"
@@ -43,7 +43,6 @@ ActiveRecord::Schema.define(version: 20180319210059) do
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "password_digest"
-    t.integer "location"
     t.string "name"
     t.string "email"
     t.string "faves"

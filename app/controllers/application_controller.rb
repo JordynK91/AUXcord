@@ -9,6 +9,7 @@ def login_in?
 	current_user != nil
 end
 
+
 def authenticate
 	if !login_in?
 		redirect_to root_path

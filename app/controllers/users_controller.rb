@@ -6,24 +6,22 @@ class UsersController < ApplicationController
 		@concerts_wishlist = Concert.where(user_id: params[:id]).where(category: "wish_list")
 		@concerts_pastevents = Concert.where(user_id: params[:id]).where(category: "past_events")
    
-	    # google calendar stuff below:
-	    	    
+	    # google calendar stuff below:   	    
         if session[:authorization] == nil
-        else	
-        client = Signet::OAuth2::Client.new(client_options)
-		client.update!(session[:authorization])	
-		client.update!(:additional_parameters => {"access_type" => "offline"})
-		service = Google::Apis::CalendarV3::CalendarService.new
-		service.authorization = client
-		@calendar_list = service.list_calendar_lists
-		@test = @calendar_list.items.first.id       
-		    # rescue Google::Apis::AuthorizationError
-	     #    response = client.refresh!
-	     #    session[:authorization] = session[:authorization].merge(response)
-      #       retry
-      #       @calendar_list = service.list_calendar_lists
-		    # @test = @calendar_list.items.first.id 
-	    end
+		else
+			client = Signet::OAuth2::Client.new(client_options)
+			   client.update!(session[:authorization])	
+			   client.update!(:additional_parameters => {"access_type" => "offline"})
+			   service = Google::Apis::CalendarV3::CalendarService.new
+			   service.authorization = client
+			if service.list_calendar_lists != nil
+               @calendar_list = service.list_calendar_lists
+			   @test = @calendar_list.items.first.id	              
+			else
+			   client = Signet::OAuth2::Client.new(client_options)
+               redirect_to client.authorization_uri.to_s  		    
+			end 	 
+		end	  	      	    
     end
 	
 	def update

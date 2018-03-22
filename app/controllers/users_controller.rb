@@ -14,12 +14,13 @@ class UsersController < ApplicationController
 			   client.update!(:additional_parameters => {"access_type" => "offline"})
 			   service = Google::Apis::CalendarV3::CalendarService.new
 			   service.authorization = client
-			if service.list_calendar_lists != nil
-               @calendar_list = service.list_calendar_lists
-			   @test = @calendar_list.items.first.id	              
-			else
+			if !client
 			   client = Signet::OAuth2::Client.new(client_options)
-               redirect_to client.authorization_uri.to_s  		    
+               redirect_to client.authorization_uri.to_s 	           
+			else
+			   @calendar_list = service.list_calendar_lists
+			   @test = @calendar_list.items.first.id  	
+			    		    
 			end 	 
 		end	  	      	    
     end

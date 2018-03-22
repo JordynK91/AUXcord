@@ -1,13 +1,9 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.profile {
-    // padding-left: 20px;  
-    background-color: black;
-}
 
-.info {
-    // padding: 20px;
+.profile {
+    background-color: black;
 }
 
 .field {
@@ -57,13 +53,12 @@
 }
 
 .subheader {
-    // border: solid;
     background-color: black;
     width: 100%;
     font-size: 80px;
     color: #FFFFFF;
     position: relative;
-    top: 300px; // left: 2%;
+    top: 300px;
     text-align: center;
 }
 
@@ -186,6 +181,10 @@
 
 .grey {
     opacity: .2;
+}
+
+.choose-file {
+    margin-left: 150px;
 }
 
 * hr {

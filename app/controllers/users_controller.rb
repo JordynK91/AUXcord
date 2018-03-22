@@ -39,7 +39,7 @@ class UsersController < ApplicationController
 
 	def create
 		user = User.new(user_params)
-	    if user.save
+	    if user.save 	
 	      redirect_to "/login"
 	    else 
 	     flash[:alert] = "Account info invalid. Please try again."
@@ -73,22 +73,24 @@ class UsersController < ApplicationController
  		 	event_id = params[:concert_id]
  	 		response = HTTParty.get("http://app.ticketmaster.com/discovery/v2/events/#{event_id}.json?apikey=#{ENV["API_KEY"]}", format: :plain)
  	        result = JSON.parse response, symbolize_names: true
-            concertDateTime =DateTime.parse(result[:dates][:start][:localDate]+'T'+result[:dates][:start][:localTime]+'-04:00').rfc3339
+            concertDateTimeStart =DateTime.parse(result[:dates][:start][:dateTime]).rfc3339
+            concertDateTimeEnd =DateTime.parse(result[:dates][:start][:dateTime]).change(hour: +3).rfc3339
+            # concertDateTime =DateTime.parse(result[:dates][:start][:localDate]+'T'+result[:dates][:start][:localTime]+'-04:00').rfc3339
  		    client = Signet::OAuth2::Client.new(client_options)
  		    client.update!(session[:authorization])
  		    service = Google::Apis::CalendarV3::CalendarService.new
  		    service.authorization = client
  		    today = Date.today
  		    event = Google::Apis::CalendarV3::Event.new({
- 		      start: Google::Apis::CalendarV3::EventDateTime.new(date_time: concertDateTime),
- 		      end: Google::Apis::CalendarV3::EventDateTime.new(date_time: concertDateTime),
+ 		      start: Google::Apis::CalendarV3::EventDateTime.new(date_time: concertDateTimeStart),
+ 		      end: Google::Apis::CalendarV3::EventDateTime.new(date_time: concertDateTimeEnd),
  		      summary: result[:name],
  		      description: result[:info],
  		      location: result[:_embedded][:venues][0][:name] 
  		    })
- 
  		    service.insert_event(params[:calendar_id], event)
- 		redirect_to "/users/#{current_user.id}"    
+ 		    flash[:message] = 'Event added to your calendar'
+ 		    redirect_to "/users/#{current_user.id}"    
      end
 
 

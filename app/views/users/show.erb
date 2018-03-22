@@ -4,7 +4,7 @@
 
 	<div class = 'headerphoto'>
 		<div class = 'header'>
-			Hey, <%= @user.name %>!
+			Hey <%= @user.name %>.
 		</div>
 		<div class = 'subheader'>
 			Get Organized with AUXcord
@@ -43,7 +43,7 @@
  		</div>
  		<div class="user-container">
                 <h1><u>These are your upcoming shows:</u></h1>
-                </br>
+                <br/>
 
                 <!-- the upcoming concerts from concert database-->
  				<%if @concerts_upcomings[0] == nil %>
@@ -106,7 +106,7 @@
  	</div>
  			<div class="user-container">
  			<h1><u>These are shows you want to see:</u></h1>
-            </br>
+            <br/>
  			<!-- the wishlist concerts from concert database-->
 			<%if @concerts_wishlist[0] == nil %>
 			    <div><h1>You don't have any shows listed here.</h1></div>			    
@@ -138,7 +138,7 @@
  			<!-- the past concerts from concert database-->
  			<div class="user-container">
  			<h1><u>These are shows you've seen:</u></h1>
-            </br>
+            <br/>
 			<%if @concerts_pastevents[0] == nil %>
 			    <h1>You don't have any shows listed here.</h1> 	 			    
             <%else%>
@@ -169,20 +169,23 @@
 	          	 	<%= f.submit "Add Notes"%>
 	          		<% end %>
 	          			</div>
-	          		</br>
+	          		<br>
 
-	       		<div class = 'col-6'>
-	       		<div><%= image_tag u.image (:large) %></div>
-	       		</br>
+	       				<div class = 'col-6'>
+
+	       		<div><%= image_tag u.image%></div>
+	       		<br>
+	       		<div class="image">
 	       		<%= form_for u do |f| %>
-	          		<div class="choose-file"><%= f.file_field :image %></div></br>
+	          		<div><%= f.file_field :image %></div>
 	          		<div><%= f.submit "Upload Photo" %></div>
 	          	</div>
 	          		<% end %>
+	       				</div>
 	       			</div>
 	       		</div>
 
-	          		</br>
+	          		<br>
 	                <!-- delete this concert from concert database-->
 	                <%= form_tag(concert_path, method: "delete") do %>
                         <input type='hidden' name='api_id' value="<%=@event_id%>">
@@ -215,7 +218,7 @@
  					<% end %>
  							<div class = 'awardheader'> Fan </div>
  							<div class = 'award'> </div>
- 							<div class =' awardtext'> 1 Concert </br> Attended</div>
+ 							<div class =' awardtext'> 1 Concert <br> Attended</div>
  						</div>
  				</div>
 
@@ -227,7 +230,7 @@
  					<% end %>
  							<div class = 'awardheader'> Roadie</div>
  							<div class = 'award'> </div>
- 							<div class =' awardtext'> 3 Concerts </br> Attended</div>
+ 							<div class =' awardtext'> 3 Concerts <br> Attended</div>
  						</div>
  				</div>
  			
@@ -240,7 +243,7 @@
  					<% end %>
  							<div class = 'awardheader'> Opening Act</div>
  							<div class = 'award'> </div>
- 							<div class =' awardtext'> 5 Concerts </br> Attended</div>
+ 							<div class =' awardtext'> 5 Concerts <br> Attended</div>
  						</div>
  				</div>
  			
@@ -253,7 +256,7 @@
  					<% end %>
  							<div class = 'awardheader'> MC </div>
  							<div class = 'award'> </div>
- 							<div class =' awardtext'> 10 Concerts </br> Attended</div>
+ 							<div class =' awardtext'> 10 Concerts <br> Attended</div>
  						</div>
  				</div>
  	
@@ -265,7 +268,7 @@
 					<% end %>
 							<div class = 'awardheader'> Shredder </div>
  							<div class = 'award'> </div>
- 							<div class =' awardtext'> 25 Concerts </br> Attended</div>
+ 							<div class =' awardtext'> 25 Concerts <br> Attended</div>
  						</div>
  				</div>
  	
@@ -277,7 +280,7 @@
  					<% end %>
 							<div class = 'awardheader'> Rock Star </div>
  							<div class = 'award'> </div>
- 							<div class =' awardtext'> 50 Concerts </br> Attended</div>
+ 							<div class =' awardtext'> 50 Concerts <br> Attended</div>
  						</div>
  				</div>
 
@@ -290,69 +293,69 @@
  				<% end %>		
  						<div class = 'awardheader'> Hall of Fame</div>
  						<div class = 'award'> </div>
- 						<div class =' awardtext'> 100 Concerts </br> Attended</div>
+ 						<div class =' awardtext'> 100 Concerts <br> Attended</div>
  				</div>
 			</div>
 
 
 			<div class = 'col-smal'>
-					<% if @archives.where(category: 'Rock').length >= 1 %>
+					<% if @archives.where(category: 'rock') != nil %>
 						<div class = 'visible'>
  					<% else %>
  						<div class = 'grey'>
  					<% end %>		
  							<div class = 'awardheader'> Rock On</div>
  							<div class = 'award'> </div>
- 							<div class =' awardtext'> 1 Rock Show </br> Attended</div>
+ 							<div class =' awardtext'> 1 Rock Show <br> Attended</div>
  						</div>
  				</div>
 
  			<div class = 'col-smal'>
-					<% if @archives.where(category: 'Dance/Electronica').length >= 1 %>
+					<% if @archives.where(category: 'dance/electronica') != nil %>
 						<div class = 'visible'>
  					<% else %>
  						<div class = 'grey'>
  					<% end %>		
  							<div class = 'awardheader'> Bass Drop</div>
  							<div class = 'award'> </div>
- 							<div class =' awardtext'> 1 Dance/Electronica </br> Show Attended</div>
+ 							<div class =' awardtext'> 1 Dance/Electronica <br> Show Attended</div>
  						</div>
  				</div>
 
 
  			<div class = 'col-smal'>
-					<% if @archives.where(category: 'Hip-Hop/Rap').length >= 1 %>
+					<% if @archives.where(category: 'hip-hop/rap') != nil %>
 						<div class = 'visible'>
  					<% else %>
  						<div class = 'grey'>
  					<% end %>		
  							<div class = 'awardheader'> Rapper's Delight</div>
  							<div class = 'award'> </div>
- 							<div class =' awardtext'> 1 Hip-Hop Show </br> Attended</div>
+ 							<div class =' awardtext'> 1 Hip-Hop Show <br> Attended</div>
  						</div>
  				</div>
 
  			<div class = 'col-smal'>
-					<% if @archives.where(category: 'Country').length >= 1 %>
+					<% if @archives.where(category: 'country') != nil %>
 						<div class = 'visible'>
  					<% else %>
  						<div class = 'grey'>
  					<% end %>		
  							<div class = 'awardheader'> Grand Ole Opry</div>
  							<div class = 'award'> </div>
- 							<div class =' awardtext'> 1 Country Show </br> Attended</div>
+ 							<div class =' awardtext'> 1 Country Show <br> Attended</div>
  						</div>
  				</div>
 
  			<div class = 'col-smal'>
-					<% if @archives.where(category: 'Pop').length >= 1 %>
+					<% if @archives.where(category: 'pop') != nil %>
 						<div class = 'visible'>
  					<% else %>
  						<div class = 'grey'>
  					<% end %>		
  							<div class = 'awardheader'> Pop Life</div>
  							<div class = 'award'> </div>
- 							<div class =' awardtext'> 1 Pop Show </br> Attended</div>
+ 							<div class =' awardtext'> 1 Pop Show <br> Attended</div>
  						</div>
  				</div>
   		</div> 
@@ -377,9 +380,8 @@
 	          <div>Name:</div>
 	         	<div><%= f.text_field :name %></div>
 	          <div>favorites:</div>
-
 	          	<div><%= f.text_field :faves %></div>
-	         	</br>
+	         	<br>
 	          <%= f.submit "Save"%></br></br><hr></br>	
           <% end %>
 

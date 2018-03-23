@@ -92,7 +92,6 @@
 							    <%= submit_tag "Add It to Google Calendar" %>
                                 <%end%>    
                             <%end%>
-
                             </br><hr></br>
                         <%end%>
                     <% end %>                  
@@ -158,10 +157,6 @@
 
 					<!-- add notes about the concert you attended -->	
 
-					<div class = 'container-fluid'>
-						<div class = 'row'>
-							<div class = 'col-12'>
-
 					<%= form_for u do |f| %>
 	          		<div>Notes:</div>
 	          		<div><%= f.text_area :notes, size: '30x10', placeholder: 'How was the show? Who did you go with? What songs did they play? Record your memories here.' %></div>
@@ -174,12 +169,11 @@
 	                <!-- delete this concert from concert database-->
 	                <%= form_tag(concert_path, method: "delete") do %>
                         <input type='hidden' name='api_id' value="<%=@event_id%>">
-                        <%= submit_tag("Delete Concert") %></br></br><hr></br>	
-                    <% end %>   
-                <%end%>    
+                       <%= submit_tag("Delete Concert") %></br></br><hr></br>	
+          		 <%end%>    
 	        <%end%>    
-
-</div>	
+	    </div>
+	</div>	
 </div>
 
 <div class="tab-pane" id="achievments" role="tabpanel">

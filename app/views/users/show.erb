@@ -160,7 +160,7 @@
 
 					<div class = 'container-fluid'>
 						<div class = 'row'>
-							<div class = 'col-6'>
+							<div class = 'col-12'>
 
 					<%= form_for u do |f| %>
 	          		<div>Notes:</div>
@@ -169,21 +169,6 @@
 	          	 	<%= f.submit "Add Notes"%>
 	          		<% end %>
 	          			</div>
-	          		<br>
-
-	       				<div class = 'col-6'>
-
-	       		<div><%= image_tag u.image%></div>
-	       		<br>
-	       		<div class="image">
-	       		<%= form_for u do |f| %>
-	          		<div><%= f.file_field :image %></div>
-	          		<div><%= f.submit "Upload Photo" %></div>
-	          	</div>
-	          		<% end %>
-	       				</div>
-	       			</div>
-	       		</div>
 
 	          		<br>
 	                <!-- delete this concert from concert database-->
@@ -299,7 +284,7 @@
 
 
 			<div class = 'col-smal'>
-					<% if @archives.where(category: 'rock') != nil %>
+					<% if @archives.where(category: 'Rock').length >= 1 %>
 						<div class = 'visible'>
  					<% else %>
  						<div class = 'grey'>
@@ -311,7 +296,7 @@
  				</div>
 
  			<div class = 'col-smal'>
-					<% if @archives.where(category: 'dance/electronica') != nil %>
+					<% if @archives.where(category: 'Dance/Electronica').length >= 1 %>
 						<div class = 'visible'>
  					<% else %>
  						<div class = 'grey'>
@@ -324,7 +309,7 @@
 
 
  			<div class = 'col-smal'>
-					<% if @archives.where(category: 'hip-hop/rap') != nil %>
+					<% if @archives.where(category: 'Hip-Hop/Rap').length >= 1%>
 						<div class = 'visible'>
  					<% else %>
  						<div class = 'grey'>
@@ -336,7 +321,7 @@
  				</div>
 
  			<div class = 'col-smal'>
-					<% if @archives.where(category: 'country') != nil %>
+					<% if @archives.where(category: 'Country').length >= 1 %>
 						<div class = 'visible'>
  					<% else %>
  						<div class = 'grey'>
@@ -348,7 +333,7 @@
  				</div>
 
  			<div class = 'col-smal'>
-					<% if @archives.where(category: 'pop') != nil %>
+					<% if @archives.where(category: 'Pop').length >= 1 %>
 						<div class = 'visible'>
  					<% else %>
  						<div class = 'grey'>

@@ -27,7 +27,7 @@
 }
 
 .nav {
-    margin-left: 230px; // background-color: black;  
+    margin-left: 230px; // background-color: black;
 }
 
 .nav-item {
@@ -35,7 +35,7 @@
 }
 
 .headerphoto {
-    background-image: url("mixing.jpeg");
+    background-image: url('/mixing.jpeg');
     height: 800px;
     width: 100%;
     margin: 0 auto;
@@ -56,7 +56,7 @@
     background-color: black;
     width: 100%;
     font-size: 80px;
-    color: #FFFFFF;
+    color: #ffffff;
     position: relative;
     top: 300px;
     text-align: center;
@@ -68,7 +68,7 @@
 }
 
 .upcoming-photo {
-    background-image: url("ticket-roll.jpeg");
+    background-image: url('/ticket-roll.jpg');
     height: 400px;
     width: 100%;
     background-position: center;
@@ -84,7 +84,7 @@
 }
 
 .wishlist-photo {
-    background-image: url("photo_wishlist.jpeg");
+    background-image: url('/wishlist.jpg');
     height: 400px;
     width: 100%;
     background-position: center;
@@ -100,7 +100,7 @@
 }
 
 .history-photo {
-    background-image: url("photo_history.jpeg");
+    background-image: url('/photo_history.jpg');
     height: 400px;
     width: 100%;
     background-position: center;
@@ -116,7 +116,7 @@
 }
 
 .achievments-photo {
-    background-image: url("photo-achieve.png");
+    background-image: url('/photo-achieve.png');
     height: 400px;
     width: 100%;
     background-position: center;
@@ -132,7 +132,7 @@
 }
 
 .user-photo {
-    background-image: url("photo_edit");
+    background-image: url('/photo_edit.jpg');
     height: 400px;
     width: 100%;
     background-position: center;
@@ -161,7 +161,7 @@
     height: 200px;
     width: 200px;
     display: in-line;
-    background-image: url('award');
+    background-image: url('/award.png');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -181,7 +181,7 @@
 }
 
 .grey {
-    opacity: .2;
+    opacity: 0.2;
 }
 
 .choose-file {

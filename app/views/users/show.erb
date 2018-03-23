@@ -1,8 +1,6 @@
 
 <div class="profile">
-
-
-	<div class = 'headerphoto'>
+    <div class = 'headerphoto'>
 		<div class = 'header'>
 			Hey <%= @user.name %>.
 		</div>
@@ -30,8 +28,7 @@
   				  <a class="nav-link" id="user-tab" data-toggle="tab" href="#user" role="tab">Edit Your Profile</a>
   			</li>
 		</ul>
-
-	</div>	
+    </div>	
 </div>
 
 <!-- tab content -->
@@ -100,17 +97,17 @@
   			</div>
   		</div>
 
-<div class="tab-pane" id="wishlist" role="tabpanel">
-  	<div class = 'wishlist-photo'>
- 		<div class = 'wishlist-header'> Your Dreams Go Here</div>
- 	</div>
- 			<div class="user-container">
- 			<h1><u>These are shows you want to see:</u></h1>
-            <br/>
- 			<!-- the wishlist concerts from concert database-->
+	    <div class="tab-pane" id="wishlist" role="tabpanel">
+		  	<div class = 'wishlist-photo'>
+		 		<div class = 'wishlist-header'> Your Dreams Go Here</div>
+		 	</div>
+			<div class="user-container">
+			<h1><u>These are shows you want to see:</u></h1>
+	        <br/>
+				<!-- the wishlist concerts from concert database-->
 			<%if @concerts_wishlist[0] == nil %>
 			    <div><h1>You don't have any shows listed here.</h1></div>			    
-            <%else%>
+	        <%else%>
 	 			<% @concerts_wishlist.each do |u|%>
 		 		    <%@event_id = u.api_id%>
 		 			<%response = HTTParty.get("http://app.ticketmaster.com/discovery/v2/events/#{@event_id}.json?apikey=#{ENV["API_KEY"]}", format: :plain)%>
@@ -122,26 +119,26 @@
 					<p>Venue: <%= @result[:_embedded][:venues][0][:name]%></p>
 					<!-- delete this concert from concert database-->
 					<%= form_tag(concert_path, method: "delete") do %>
-                        <input type='hidden' name='api_id' value="<%=@event_id%>">
-                        <%= submit_tag("Delete") %></br></br><hr></br>	
-                    <% end %>
+	                    <input type='hidden' name='api_id' value="<%=@event_id%>">
+	                    <%= submit_tag("Delete") %></br></br><hr></br>	
+	                <% end %>
 	            <%end%>
 	        <%end%>    
-	</div>
-</div>
+		</div>
+    </div>
   	
-<div class="tab-pane" id="history" role="tabpanel">
-	<div class = 'history-photo'>
- 		<div class = 'history-header'> Thanks for the Memories </div>
- 	</div>
+    <div class="tab-pane" id="history" role="tabpanel">
+		<div class = 'history-photo'>
+	 		<div class = 'history-header'> Thanks for the Memories </div>
+	 	</div>
 
- 			<!-- the past concerts from concert database-->
- 			<div class="user-container">
- 			<h1><u>These are shows you've seen:</u></h1>
-            <br/>
+			<!-- the past concerts from concert database-->
+		<div class="user-container">
+			<h1><u>These are shows you've seen:</u></h1>
+        <br/>
 			<%if @concerts_pastevents[0] == nil %>
 			    <h1>You don't have any shows listed here.</h1> 	 			    
-            <%else%>
+	        <%else%>
 	 			<% @concerts_pastevents.each do |u|%>
 		 		    <%@event_id = u.api_id%>
 		 			<%response = HTTParty.get("http://app.ticketmaster.com/discovery/v2/events/#{@event_id}.json?apikey=#{ENV["API_KEY"]}", format: :plain)%>
@@ -158,9 +155,9 @@
 
 					<!-- add notes about the concert you attended -->	
 
-					<div class = 'container-fluid'>
+					<!-- <div class = 'container-fluid'>
 						<div class = 'row'>
-							<div class = 'col-12'>
+							<div class = 'col-12'> -->
 
 					<%= form_for u do |f| %>
 	          		<div>Notes:</div>
@@ -168,44 +165,43 @@
 	          		<input type='hidden' value="<%= u.id%>">
 	          	 	<%= f.submit "Add Notes"%>
 	          		<% end %>
-	          			</div>
+		          			
 
 	          		<br>
 	                <!-- delete this concert from concert database-->
 	                <%= form_tag(concert_path, method: "delete") do %>
-                        <input type='hidden' name='api_id' value="<%=@event_id%>">
+                    <input type='hidden' name='api_id' value="<%=@event_id%>">
                         <%= submit_tag("Delete Concert") %></br></br><hr></br>	
                     <% end %>   
-                <%end%>    
-	        <%end%>    
-
-</div>	
-</div>
+	            <%end%>    
+		    <%end%>    
+        </div>	
+ </div>
 
 <div class="tab-pane" id="achievments" role="tabpanel">
-		<div class = 'achievments-photo'> 
- 			<div class = 'achivements-header'> Baby, You've Earned It</div>
- 		</div>
+	<div class = 'achievments-photo'> 
+		<div class = 'achivements-header'> Baby, You've Earned It</div>
+    </div>
  			
-			<div class="user-container">
- 			<!-- achivements determined by archive data --> 
- 			<% if @archives.length == 0 %>
- 			<div> You don't have any achievements yet. Start going to some concerts! </div>
- 			<% end %>
+	<div class="user-container">
+		<!-- achivements determined by archive data --> 
+		<% if @archives.length == 0 %>
+		<div> You don't have any achievements yet. Start going to some concerts! </div>
+		<% end %>
 
- 			<!-- awards initially appear faded, become sharper when earned -->
- 			<div class = 'row'>
- 				<div class = 'col-smal'>
- 					<% if @archives.length >= 1 %>
- 						<div class='visible'>
- 					<% else %>
- 						<div  class = 'grey'>
- 					<% end %>
- 							<div class = 'awardheader'> Fan </div>
- 							<div class = 'award'> </div>
- 							<div class =' awardtext'> 1 Concert <br> Attended</div>
- 						</div>
- 				</div>
+		<!-- awards initially appear faded, become sharper when earned -->
+		<div class = 'row'>
+			<div class = 'col-smal'>
+				<% if @archives.length >= 1 %>
+					<div class='visible'>
+				<% else %>
+					<div  class = 'grey'>
+				<% end %>
+						<div class = 'awardheader'> Fan </div>
+						<div class = 'award'> </div>
+						<div class =' awardtext'> 1 Concert <br> Attended</div>
+					</div>
+			</div>
 
 			<div class = 'col-smal'>
  					<% if @archives.length >= 3 %>
@@ -343,7 +339,7 @@
  							<div class =' awardtext'> 1 Pop Show <br> Attended</div>
  						</div>
  				</div>
-  		</div> 
+  		</div>
   	</div>
 </div>
 

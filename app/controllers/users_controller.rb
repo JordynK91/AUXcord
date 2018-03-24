@@ -64,8 +64,9 @@ class UsersController < ApplicationController
      def redirect
          client = Signet::OAuth2::Client.new(client_options)
          # 
-         redirect_to client.authorization_uri.to_s
-         # "https://id.heroku.com/oauth/authorize?client_id=#{client_options[:client_id]}&response_type=code&scope=#{client_options[:scope]}&state={anti-forgery-token}"     
+         redirect_to "https://id.heroku.com/oauth/authorize?client_id=#{client_options[:client_id]}&response_type=code&scope=globle&state={anti-forgery-token}"
+         # client.authorization_uri.to_s
+         #      
  	end
  
  	

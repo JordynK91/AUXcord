@@ -111,7 +111,7 @@ class UsersController < ApplicationController
 	:achievements)
 	    end 
 
-        # google canlendar methods
+        google canlendar methods
 	    def client_options
 	    {
 	      client_id: Rails.application.secrets.google_client_id,

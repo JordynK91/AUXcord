@@ -53,5 +53,9 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   #routing for paperclip gem
+<<<<<<< HEAD
   # Paperclip.options[:command_path] = "/usr/local/bin/"
+=======
+ 
+>>>>>>> 3638e2b3c7c5624191642fad6e98ac11b26284c9
 end

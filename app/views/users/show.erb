@@ -90,7 +90,6 @@
 							    <%= submit_tag "Add It to Google Calendar" %>
                                 <%end%>    
                             <%end%>
-
                             </br><hr></br>
                         <%end%>
                     <% end %>                  
@@ -156,10 +155,13 @@
 
 					<!-- add notes about the concert you attended -->	
 
+<<<<<<< HEAD
 					<!-- <div class = 'container-fluid'>
 						<div class = 'row'>
 							<div class = 'col-12'> -->
 
+=======
+>>>>>>> 3638e2b3c7c5624191642fad6e98ac11b26284c9
 					<%= form_for u do |f| %>
 	          		<div>Notes:</div>
 	          		<div><%= f.text_area :notes, size: '30x10', placeholder: 'How was the show? Who did you go with? What songs did they play? Record your memories here.' %></div>
@@ -171,6 +173,7 @@
 	          		<br>
 	                <!-- delete this concert from concert database-->
 	                <%= form_tag(concert_path, method: "delete") do %>
+<<<<<<< HEAD
                     <input type='hidden' name='api_id' value="<%=@event_id%>">
                         <%= submit_tag("Delete Concert") %></br></br><hr></br>	
                     <% end %>   
@@ -178,6 +181,15 @@
 		    <%end%>    
         </div>	
  </div>
+=======
+                        <input type='hidden' name='api_id' value="<%=@event_id%>">
+                       <%= submit_tag("Delete Concert") %></br></br><hr></br>	
+          		 <%end%>    
+	        <%end%>    
+	    </div>
+	</div>	
+</div>
+>>>>>>> 3638e2b3c7c5624191642fad6e98ac11b26284c9
 
 <div class="tab-pane" id="achievments" role="tabpanel">
 	<div class = 'achievments-photo'> 

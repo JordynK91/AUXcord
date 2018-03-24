@@ -63,7 +63,8 @@ class UsersController < ApplicationController
 	 	# google canlendar methods
      def redirect
          client = Signet::OAuth2::Client.new(client_options)
-         redirect_to client.authorization_uri.to_s     
+         # client.authorization_uri.to_s
+         redirect_to "https://id.heroku.com/oauth/authorize?client_id={#{client_options[:client_id]}}&response_type=code&scope={#{client_options[:scope]}}&state={anti-forgery-token}"     
  	end
  
  	
@@ -114,7 +115,7 @@ class UsersController < ApplicationController
 	      client_id: Rails.application.secrets.google_client_id,
 	      client_secret: Rails.application.secrets.google_client_secret,
 	      authorization_uri: 'https://accounts.google.com/o/oauth2/auth',
-	      token_credential_uri: 'https://accounts.google.com/o/oauth2/token',
+	      token_credential_uri: 'https://id.heroku.com/oauth/authorize',
 	      scope: Google::Apis::CalendarV3::AUTH_CALENDAR,
 	      redirect_uri: 'https://auxcord.herokuapp.com/callback'
 	    }

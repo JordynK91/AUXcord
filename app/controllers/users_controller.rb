@@ -12,16 +12,17 @@ class UsersController < ApplicationController
 			client = Signet::OAuth2::Client.new(client_options)
 			client.update!(session[:authorization])	
 			client.update!(:additional_parameters => {"access_type" => "offline"})
-			refreshToken
+			# refreshToken
 			service = Google::Apis::CalendarV3::CalendarService.new
 			service.authorization = client
-			# if !service.authorization 
-			   @calendar_list = service.list_calendar_lists
-			   @test = @calendar_list.items.first.id  		           
-			# else
-			#    client = Signet::OAuth2::Client.new(client_options)
-   #             redirect_to client.authorization_uri.to_s    	 		    
-			# end	 
+			if client.expired?
+			   client = Signet::OAuth2::Client.new(client_options)
+               redirect_to client.authorization_uri.to_s 	   
+		    else
+		       @calendar_list = service.list_calendar_lists
+			   @test = @calendar_list.items.first.id  
+			      	 		    
+			end	 
 		end	 	      	    
     end
 
@@ -75,6 +76,7 @@ class UsersController < ApplicationController
  	    client = Signet::OAuth2::Client.new(client_options)
  	    client.code = params[:code]
  	    response = client.fetch_access_token!
+
  	    session[:authorization] = response
  	    redirect_to "/users/#{current_user.id}"
      end  

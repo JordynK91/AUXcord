@@ -114,8 +114,8 @@ class UsersController < ApplicationController
 	    {
 	      client_id: Rails.application.secrets.google_client_id,
 	      client_secret: Rails.application.secrets.google_client_secret,
-	      authorization_uri: 'https://accounts.google.com/o/oauth2/auth',
-	      token_credential_uri: 'https://id.heroku.com/oauth/authorize',
+	      authorization_uri: 'https://id.heroku.com/oauth/authorize',
+	      token_credential_uri: 'https://id.heroku.com/oauth/token',
 	      scope: Google::Apis::CalendarV3::AUTH_CALENDAR,
 	      redirect_uri: 'https://auxcord.herokuapp.com/callback'
 	    }

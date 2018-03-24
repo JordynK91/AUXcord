@@ -6,24 +6,20 @@ class UsersController < ApplicationController
 		@concerts_wishlist = Concert.where(user_id: params[:id]).where(category: "wish_list")
 		@concerts_pastevents = Concert.where(user_id: params[:id]).where(category: "past_events")
    
-	    # google calendar stuff below:   	    
+	    # google calendar stuff below:  	    
         if session[:authorization] == nil
 		else
 			client = Signet::OAuth2::Client.new(client_options)
-			client.update!(session[:authorization])	
-			client.update!(:additional_parameters => {"access_type" => "offline"})
-			# refreshToken
+			client.update!(session[:authorization])
+	        tokenRefresh
 			service = Google::Apis::CalendarV3::CalendarService.new
 			service.authorization = client
-			if client.expired?
-			   client = Signet::OAuth2::Client.new(client_options)
-               redirect_to client.authorization_uri.to_s 	   
-		    else
-		       @calendar_list = service.list_calendar_lists
-			   @test = @calendar_list.items.first.id  
-			      	 		    
-			end	 
-		end	 	      	    
+			if service.authorization.expires_at < Time.now 
+			else 
+				@calendar_list = service.list_calendar_lists
+				@test = @calendar_list.items.first.id 
+			end          
+		end	    			  	 	      	    
     end
 
     def refreshToken
@@ -36,6 +32,16 @@ class UsersController < ApplicationController
         retry	
     end	
 	
+	def tokenRefresh
+		client = Signet::OAuth2::Client.new(client_options)
+		client.update!(session[:authorization])	
+		client.update!(:additional_parameters => {"access_type" => "offline"})
+		rescue Google::Apis::AuthorizationError
+            response = client.refresh!
+            session[:authorization] = session[:authorization].merge(response)
+        retry
+	end  
+
 	def update
 		user= User.find_by_id(params[:id])
 	    if(user.id == current_user.id)
@@ -68,7 +74,9 @@ class UsersController < ApplicationController
 	 	# google canlendar methods
      def redirect
          client = Signet::OAuth2::Client.new(client_options)
-         redirect_to client.authorization_uri.to_s     
+         # 
+         redirect_to client.authorization_uri.to_s
+         #      
  	end
  
  	
@@ -78,6 +86,7 @@ class UsersController < ApplicationController
  	    response = client.fetch_access_token!
 
  	    session[:authorization] = response
+ 	    session[:authorization][:code] = params[:code]
  	    redirect_to "/users/#{current_user.id}"
      end  
  
@@ -120,7 +129,7 @@ class UsersController < ApplicationController
 	      client_id: Rails.application.secrets.google_client_id,
 	      client_secret: Rails.application.secrets.google_client_secret,
 	      authorization_uri: 'https://accounts.google.com/o/oauth2/auth',
-	      token_credential_uri: 'https://accounts.google.com/o/oauth2/token',
+          token_credential_uri: 'https://accounts.google.com/o/oauth2/token',
 	      scope: Google::Apis::CalendarV3::AUTH_CALENDAR,
 	      redirect_uri: 'http://localhost:3000/callback'
 	    }

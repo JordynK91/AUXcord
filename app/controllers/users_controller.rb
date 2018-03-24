@@ -16,8 +16,8 @@ class UsersController < ApplicationController
 			service.authorization = client
 			if service.authorization.expires_at < Time.now 
 			else 
-			@calendar_list = service.list_calendar_lists
-			@test = @calendar_list.items.first.id 
+				@calendar_list = service.list_calendar_lists
+				@test = @calendar_list.items.first.id 
 			end          
 		end	    			  	 	      	    
     end

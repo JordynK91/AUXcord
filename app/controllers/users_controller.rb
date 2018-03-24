@@ -10,14 +10,15 @@ class UsersController < ApplicationController
         if session[:authorization] == nil
 		else
 			client = Signet::OAuth2::Client.new(client_options)
-			client.update!(session[:authorization])	
-			client.update!(:additional_parameters => {"access_type" => "offline"})
-			tokenRefresh
+			client.update!(session[:authorization])
+	        tokenRefresh
 			service = Google::Apis::CalendarV3::CalendarService.new
 			service.authorization = client
-			# if service.authorization 
+			if service.authorization.expires_at < Time.now 
+			else 
 			@calendar_list = service.list_calendar_lists
-			@test = @calendar_list.items.first.id           
+			@test = @calendar_list.items.first.id 
+			end          
 		end	    			  	 	      	    
     end
 	
@@ -74,6 +75,7 @@ class UsersController < ApplicationController
  	    client.code = params[:code]
  	    response = client.fetch_access_token!
  	    session[:authorization] = response
+ 	    session[:authorization][:code] = params[:code]
  	    redirect_to "/users/#{current_user.id}"
      end  
  
@@ -110,7 +112,7 @@ class UsersController < ApplicationController
 	:achievements)
 	    end 
 
-        google canlendar methods
+        # google canlendar methods
 	    def client_options
 	    {
 	      client_id: Rails.application.secrets.google_client_id,
@@ -118,7 +120,7 @@ class UsersController < ApplicationController
 	      authorization_uri: 'https://accounts.google.com/o/oauth2/auth',
           token_credential_uri: 'https://accounts.google.com/o/oauth2/token',
 	      scope: Google::Apis::CalendarV3::AUTH_CALENDAR,
-	      redirect_uri: 'https://auxcord.herokuapp.com/callback'
+	      redirect_uri: 'http://localhost:3000/callback'
 	    }
 	    end
     

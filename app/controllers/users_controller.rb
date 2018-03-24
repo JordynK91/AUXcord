@@ -21,6 +21,16 @@ class UsersController < ApplicationController
 			end          
 		end	    			  	 	      	    
     end
+
+    def refreshToken
+    	client = Signet::OAuth2::Client.new(client_options)
+		client.update!(session[:authorization])	
+		client.update!(:additional_parameters => {"access_type" => "offline"})
+		rescue Google::Apis::AuthorizationError
+        response = client.refresh!
+        session[:authorization] = session[:authorization].merge(response)
+        retry	
+    end	
 	
 	def tokenRefresh
 		client = Signet::OAuth2::Client.new(client_options)
@@ -74,6 +84,7 @@ class UsersController < ApplicationController
  	    client = Signet::OAuth2::Client.new(client_options)
  	    client.code = params[:code]
  	    response = client.fetch_access_token!
+
  	    session[:authorization] = response
  	    session[:authorization][:code] = params[:code]
  	    redirect_to "/users/#{current_user.id}"
